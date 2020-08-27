@@ -1,0 +1,1519 @@
+<template>
+
+<div >
+  
+<div v-if='!infoLoad' class='container6'>
+<loading row wrap align-center></loading>
+</div>
+
+  <div v-else>
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/fonts.css" />
+    <div class="page__wrapper">
+      <div class="page__content">
+        <!-- HEADER -->
+        <header class="header">
+          <div class="header__logo">
+            <a class="header__logo-a" href="landing.html">Allquasars</a>
+          </div>
+          <nav class="header__nav">
+            <ul class="header__nav-list">
+              <li class="header__nav-item">
+                <button id="fisrtMoreBtn" class="header__nav-btn">
+                  Помощь
+                </button>
+              </li>
+              <li class="header__nav-item">
+                <a class="header__nav-a" href="login.html">Выйти</a>
+              </li>
+              <!-- PROFILE -->
+              <li class="header__nav-item header__profile">
+                <!-- NAME -->
+                <!-- При клике -> меню редактированя профиля -->
+                <div class="header__profile-name">{{firstName}}</div>
+                <div class="header__profile-photo">
+                  <img
+                    class="header__profile-img"
+                    src="images/main/profile.jpg"
+                    alt="Profile"
+                  />
+                </div>
+              </li>
+              <!-- END OF PROFILE -->
+            </ul>
+          </nav>
+        </header>
+        <!-- END OF HEADER -->
+
+        <!-- стартовый блок приветствия -->
+        <!-- после нажатия на кнопку старту даешь класс .start--disabled  -->
+        <div class="start" :class="{ 'start--disabled': startDisabled }">
+          <div class="start__headering">
+            <span>Впервые?</span>
+          </div>
+          <div class="start__message">
+            <span>
+              Добро пожаловать в Allquasars!
+              <br />Прежде чем начать работу, необходимо наcтроить <br />ваш
+              профиль Allquasars. Нажмите на кнопку <br />"Настроить профиль"
+              для перехода в панель редактирования.
+            </span>
+          </div>
+          <div class="start__button" @click="startDisabled = true">
+            <button class="start__button-item">Настроить профиль</button>
+          </div>
+        </div>
+
+        <!-- PROFILE -->
+        <div class="profile">
+          <div class="profile__content">
+            <!-- навигация по настройке профиля и полезные ссылки -->
+            <div class="profile__nav">
+              <div class="profile__nav-content">
+                <div class="profile__section-name">
+                  <span class="profile__section-content"
+                    >Редактирование аккаунта</span
+                  >
+                </div>
+                <div class="profile__nav-account">
+                  <div id="profileAccount" class="profile__nav-account-item">
+                    <!-- опять фото аккаунта и имя пользователя -->
+                    <img
+                      class="profile__nav-account-image"
+                      src="images/main/profile.jpg"
+                      alt="account"
+                    />
+                    <span class="profile__nav-account-text" >{{firstName}}</span>
+                  </div>
+                  <div class="profile__nav-account-setting">
+                    <button class="profile__nav-account-btn">Выйти</button>
+                    <button
+                      class="profile__nav-account-btn profile__nav-account-delete"
+                    >
+                      Удалить
+                    </button>
+                  </div>
+                </div>
+                <ul class="profile__nav-list">
+                  <li class="profile__nav-item-first profile__nav-item">
+                    <a
+                      href="#"
+                      class="profile__nav-btn profile__nav-btn-profile"
+                    >
+                      <span class="profile__nav-icon">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M16 9C16 11.2091 14.2091 13 12 13C9.79086 13 8 11.2091 8 9C8 6.79086 9.79086 5 12 5C14.2091 5 16 6.79086 16 9ZM14 9C14 10.1046 13.1046 11 12 11C10.8954 11 10 10.1046 10 9C10 7.89543 10.8954 7 12 7C13.1046 7 14 7.89543 14 9Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1ZM3 12C3 14.0902 3.71255 16.014 4.90798 17.5417C6.55245 15.3889 9.14627 14 12.0645 14C14.9448 14 17.5092 15.3531 19.1565 17.4583C20.313 15.9443 21 14.0524 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12ZM12 21C9.84977 21 7.87565 20.2459 6.32767 18.9878C7.59352 17.1812 9.69106 16 12.0645 16C14.4084 16 16.4833 17.1521 17.7538 18.9209C16.1939 20.2191 14.1881 21 12 21Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </span>
+                      <span class="profile__nav-btn-item">Профиль</span>
+                    </a>
+                  </li>
+                  <li class="profile__nav-item-first profile__nav-item">
+                    <button class="profile__nav-btn profile__nav-btn-profile">
+                      <span class="profile__nav-icon">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M18 10.5C19.6569 10.5 21 11.8431 21 13.5V19.5C21 21.1569 19.6569 22.5 18 22.5H6C4.34315 22.5 3 21.1569 3 19.5V13.5C3 11.8431 4.34315 10.5 6 10.5V7.5C6 4.18629 8.68629 1.5 12 1.5C15.3137 1.5 18 4.18629 18 7.5V10.5ZM12 3.5C14.2091 3.5 16 5.29086 16 7.5V10.5H8V7.5C8 5.29086 9.79086 3.5 12 3.5ZM18 12.5H6C5.44772 12.5 5 12.9477 5 13.5V19.5C5 20.0523 5.44772 20.5 6 20.5H18C18.5523 20.5 19 20.0523 19 19.5V13.5C19 12.9477 18.5523 12.5 18 12.5Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </span>
+                      <span class="profile__nav-btn-item">Безопасность</span>
+                    </button>
+                  </li>
+                  <li class="profile__nav-item-first profile__nav-item">
+                    <button class="profile__nav-btn profile__nav-btn-profile">
+                      <span class="profile__nav-icon">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M11 10.9794C11 10.4271 11.4477 9.97937 12 9.97937C12.5523 9.97937 13 10.4271 13 10.9794V16.9794C13 17.5317 12.5523 17.9794 12 17.9794C11.4477 17.9794 11 17.5317 11 16.9794V10.9794Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M12 6.05115C11.4477 6.05115 11 6.49886 11 7.05115C11 7.60343 11.4477 8.05115 12 8.05115C12.5523 8.05115 13 7.60343 13 7.05115C13 6.49886 12.5523 6.05115 12 6.05115Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </span>
+                      <span class="profile__nav-btn-item">Поддержка</span>
+                    </button>
+                  </li>
+                </ul>
+                <ul class="profile__nav-list profile__nav-list-support">
+                  <li class="profile__nav-item">
+                    <a class="profile__nav-a" href="#">Частые вопросы</a>
+                  </li>
+                  <li class="profile__nav-item">
+                    <a class="profile__nav-a" href="#">Условия и положения</a>
+                  </li>
+                  <li class="profile__nav-item">
+                    <a class="profile__nav-a" href="#"
+                      >Политика конфиденциальности</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- все о пользователе -->
+            <div class="profile__settings">
+              <!-- аватарка -->
+              <div class="profile__section-name">
+                <span class="profile__section-content">Ваша фотография</span>
+              </div>
+              <div class="profile__avatar">
+                <!-- если картинка стоит по умолчанию -> вкл класс --unset, 
+                если пользователь загрузил фото -> класс --unset удаляется-->
+                <div
+                  id="avatarWrapper"
+                  class="profile__avatar-wrapper profile__avatar-wrapper--unset"
+                >
+                  <img
+                    id="avatarImage"
+                    class="profile__avatar-image"
+                    src="images/main/profile2.svg"
+                    alt="avatar"
+                  />
+                </div>
+                <div class="profile__avatar-button">
+                  <!-- кнопка загрузки фото -->
+                  <label
+                    id="avatarUploadWrapper"
+                    class="profile__avatar-button-item profile__avatar-button-upload"
+                    for="inputAvatarUpload"
+                  >
+                    Загрузить
+                    <input type="file" name id="inputAvatarUpload" />
+                  </label>
+                  <!-- если картинка стоит по умолчанию -> вкл класс --disabled  
+                  если пользователь загрузил фото -> класс --disabled удаляется и дальше можно заменить фото-->
+                  <label
+                    id="avatarChangeWrapper"
+                    class="profile__avatar-button-item profile__avatar-button-change profile__avatar-button--disabled"
+                    for="inputAvatarChange"
+                  >
+                    Поменять
+                    <input type="file" name id="inputAvatarChange" />
+                  </label>
+                </div>
+                <div class="profile__avatar-message">
+                  <span class="profile__avatar-message-item"
+                    >Размер изображения не должен превышать 1МБ.</span
+                  >
+                  <span class="profile__avatar-message-item"
+                    >Доступные форматы JPG, JPEG или PNG.</span
+                  >
+                </div>
+              </div>
+              <div class="profile__section-name">
+                <span class="profile__section-content"
+                  >Персональные данные</span
+                >
+              </div>
+
+              <!-- во все инпуты передай value то которое ввел пользователь при регистрации чтобы заново не вводить! -->
+              <!-- имя и фамилия -->
+              <div
+                class="portfolio__form portfolio__form--grided portfolio__initials"
+              >
+                <span
+                  id="nameWrapper"
+                  class="portfolio__form-wrap portfolio__initials-wrap form__clue"
+                  data-placeholder="Имя"
+                  :class="{ 'form__clue--clicked':inputFirstNameComp}"
+                
+                >
+                  <input
+                  @focus="inputFirstName = true" @blur="inputFirstName = false"
+                    v-model="firstName"
+                    id="inputName"
+                    class="portfolio__form-input"
+                    type="text"
+                    autocomplete="off"
+                  />
+                </span>
+                <span
+                  id="surnameWrapper"
+                  class="portfolio__form-wrap portfolio__initials-wrap form__clue"
+                  data-placeholder="Фамилия"
+                  :class="{ 'form__clue--clicked':inputLastNameComp}"
+                >
+                  <input
+                  @focus="inputLastName = true" @blur="inputLastName = false"
+                    v-model="lastName"
+                    id="inputSurname"
+                    class="portfolio__form-input"
+                    type="text"
+                    value="Чуб"
+                    autocomplete="off"
+                  />
+                </span>
+              </div>
+
+              <!-- др и тип пользователя -->
+              <div
+                class="portfolio__form portfolio__form--grided portfolio__age"
+              >
+                <span
+                  id="dateWrapper"
+                  class="portfolio__form-wrap portfolio__initials-wrap form__clue"
+                  data-placeholder="Дата рождения"
+                  :class="{ 'form__clue--clicked':inputBirthdayDateComp}"
+                >
+                  <input
+                  @focus="inputBirthdayDate = true" @blur="inputBirthdayDate = false"
+                    v-model="birthdayDate"
+                    id="inputDate"
+                    class="portfolio__form-input portfolio__age-input"
+                    value="2002-12-23"
+                    type="date"
+                    name
+                  />
+                </span>
+                <!-- здесь в value передай тип пользователя. далее с этим инпутом пользователь никак не может работать -->
+                <span
+                  id="typeWrapper"
+                  class="portfolio__form-wrap portfolio__initials-wrap form__clue form__clue--clicked"
+                  data-placeholder="Тип"
+                >
+                  <input
+                    id="inputType"
+                    v-model="type"
+                    class="portfolio__form-input portfolio__type-input "
+                    type="text"
+                    value="Заказчик"
+                    autocomplete="off"
+                    tabindex="-1"
+                  />
+                </span>
+              </div>
+
+              <!-- фильтры -->
+              <div class="profile__section-name">
+                <span class="profile__section-content"
+                  >Подробная информация</span
+                >
+                <div class="portfolio__comment">
+                  <span class="portfolio__comment-text"
+                    >Указанные фильтры влияют на результаты поиска других
+                    пользователей.</span
+                  >
+                </div>
+              </div>
+              <div class="portfolio__filter">
+                <!-- тип -->
+                <div class="portfolio__filter-type portfolio__filter-section">
+                  <div
+                    class="portfolio__filter-option portfolio__filter-option-type"
+                  >
+                    <div class="portfolio__filter-headering">
+                      <span class="portfolio__filter-label">Профессия</span>
+                    </div>
+                    <!-- если фильтр включен к элементу добавляешь класс portfolio__filter--selected -->
+                    <div
+                      class="portfolio__filter--selected portfolio__filter-item"
+                    >
+                      <span class="portfolio__filter-text">Диджей</span>
+                    </div>
+                    <div class="portfolio__filter-item">
+                      <span class="portfolio__filter-text">Пиджей</span>
+                    </div>
+                    <div class="portfolio__filter-item">
+                      <span class="portfolio__filter-text">Танцор</span>
+                    </div>
+                    <div class="portfolio__filter-item">
+                      <span class="portfolio__filter-text">Модель</span>
+                    </div>
+                    <!-- <div
+                      class="portfolio__filter-item portfolio__filter-item--all"
+                    >
+                      <span class="portfolio__filter-text">Все</span>
+                    </div> -->
+                  </div>
+                </div>
+
+                <!-- страна -->
+                <div
+                  class="portfolio__filter-country portfolio__filter-section"
+                >
+                  <div class="portfolio__filter-option">
+                    <div class="portfolio__filter-headering">
+                      <span class="portfolio__filter-label">Страна</span>
+                    </div>
+                    <div
+                      class="portfolio__filter-item"
+                  :class="{ 'portfolio__filter--selected':countrys.UKR}"
+                  @click="countrys.UKR = !countrys.UKR"
+                      
+                    >
+                      <span class="portfolio__filter-text">Украина</span>
+                    </div>
+                    <div class="portfolio__filter-item"
+                  :class="{ 'portfolio__filter--selected':countrys.RUS}"
+                  @click="countrys.RUS = !countrys.RUS"
+                    >
+                      <span class="portfolio__filter-text">Россия</span>
+                    </div>
+                    <div class="portfolio__filter-item"
+                  :class="{ 'portfolio__filter--selected':countrys.BEL}"
+                  @click="countrys.BEL = !countrys.BEL"
+                    >
+                      <span class="portfolio__filter-text">Беларусь</span>
+                    </div>
+                    <div class="portfolio__filter-item"
+                  :class="{ 'portfolio__filter--selected':countrys.POL}"
+                  @click="countrys.POL = !countrys.POL"
+                    >
+                      <span class="portfolio__filter-text">Польша</span>
+                    </div>
+                    <!-- <div
+                      class="portfolio__filter-item portfolio__filter-item--all"
+                    >
+                      <span class="portfolio__filter-text">Все</span>
+                    </div> -->
+                  </div>
+                </div>
+
+                <!-- рост -->
+                <!-- я думаю ты понимаешь что здесь выбрать сразу несклько вариантов это полный бред -->
+                <div
+                  class="portfolio__filter-height portfolio__filter-section portfolio__filter-section--last"
+                >
+                  <div class="portfolio__filter-option">
+                    <div class="portfolio__filter-headering">
+                      <span class="portfolio__filter-label">Рост</span>
+                    </div>
+                    <div
+                      class=" portfolio__filter-item"
+                    :class="{ 'portfolio__filter--selected':height==1}"
+                    @click="height=1"
+                    >
+                      <span class="portfolio__filter-text"
+                      >Менее 150 см</span>
+                    </div>
+                    <div class="portfolio__filter-item"
+                    :class="{ 'portfolio__filter--selected':height==2}"
+                    @click="height=2"
+                    >
+                      <span class="portfolio__filter-text">150-160 см</span>
+                    </div>
+                    <div class="portfolio__filter-item"
+                    :class="{ 'portfolio__filter--selected':height==3}"
+                    @click="height=3"
+                    >
+                      <span class="portfolio__filter-text">161-170 см</span>
+                    </div>
+                    <div class="portfolio__filter-item"
+                    :class="{ 'portfolio__filter--selected':height==4}"
+                    @click="height=4"
+                    >
+                      <span class="portfolio__filter-text">171-180 см</span>
+                    </div>
+                    <div class="portfolio__filter-item"
+                    :class="{ 'portfolio__filter--selected':height==5}"
+                    @click="height=5"
+                    >
+                      <span class="portfolio__filter-text">181-190 см</span>
+                    </div>
+                    <div class="portfolio__filter-item"
+                    :class="{ 'portfolio__filter--selected':height==6}"
+                    @click="height=6"
+                    >
+                      <span class="portfolio__filter-text">191-200 см</span>
+                    </div>
+                    <div class="portfolio__filter-item"
+                    :class="{ 'portfolio__filter--selected':height==7}"
+                    @click="height=7"
+                    >
+                      <span class="portfolio__filter-text">Более 200 см</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- о себе -->
+              <div class="profile__section-name">
+                <span class="profile__section-content">О вас</span>
+              </div>
+
+              <div class="portfolio__form portfolio__bio">
+                <span
+                  id="bioWrapper"
+                  class="portfolio__form-wrap portfolio__bio-wrap"
+                >
+                  <textarea
+                  v-model="description"
+                    id="inputBio"
+                    class="portfolio__form-input portfolio__bio-input"
+                    maxlength="500"
+                    placeholder="Расскажите немного о себе"
+                  ></textarea>
+                </span>
+                <div class="portfolio__comment">
+                  <span id="BioCounter" class="portfolio__comment-text">0</span>
+                  <span class="portfolio__comment-text">/500 симв.</span>
+                </div>
+              </div>
+
+              <!-- галерея -->
+              <div class="profile__section-name">
+                <span class="profile__section-content">Галерея</span>
+              </div>
+              <div class="portfolio__form portfolio__gallery">
+                <div id="galleryWrapper" class="portfolio__gallery-content">
+                  <div id="galleryInputWrapper" class="portfolio__gallery-item">
+                    <div class="portfolio__gallery-input-wrapp">
+                      <label
+                        for="inputGallery"
+                        class="portfolio__gallery-input"
+                      >
+                        <input type="file" id="inputGallery" />
+                      </label>
+                    </div>
+                  </div>
+                  <!-- здесь будут изображения -->
+                </div>
+              </div>
+              <div class="portfolio__comment portfolio__comment-gallery">
+                <span id="galleryCounter" class="portfolio__comment-text"
+                  >0</span
+                >
+                <span class="portfolio__comment-text"
+                  >/10 изобр. Размер изображения не должен превышать 1МБ.</span
+                >
+              </div>
+
+              <!-- ссылки -->
+              <div class="profile__section-name">
+                <span class="profile__section-content">Ссылки</span>
+              </div>
+              <div
+                class="portfolio__form portfolio__form--grided portfolio__link"
+              >
+                <span
+                  id="soundcloudWrapper"
+                  class="portfolio__form-wrap portfolio__link-wrap form__clue"
+                  data-placeholder="Soundcloud"
+                >
+                  <input
+                    id="inputSoundcloud"
+                    class="portfolio__form-input"
+                    type="text"
+                  />
+                </span>
+                <span
+                  id="spotifyWrapper"
+                  class="portfolio__form-wrap form__clue"
+                  data-placeholder="Spotify"
+                >
+                  <input
+                    id="inputSpotify"
+                    class="portfolio__form-input"
+                    type="text"
+                    autocomplete="off"
+                  />
+                </span>
+                <span
+                  id="itunesWrapper"
+                  class="portfolio__form-wrap portfolio__link-wrap form__clue"
+                  data-placeholder="iTunes"
+                >
+                  <input
+                    id="inputiTunes"
+                    class="portfolio__form-input"
+                    type="text"
+                    autocomplete="off"
+                  />
+                </span>
+                <span
+                  id="appleMusicWrapper"
+                  class="portfolio__form-wrap form__clue"
+                  data-placeholder="Apple Music"
+                >
+                  <input
+                    id="inputAppleMusic"
+                    class="portfolio__form-input"
+                    type="text"
+                    autocomplete="off"
+                  />
+                </span>
+                <span
+                  id="youtubeWrapper"
+                  class="portfolio__form-wrap portfolio__link-wrap form__clue"
+                  data-placeholder="YouTube"
+                >
+                  <input
+                    id="inputYoutube"
+                    class="portfolio__form-input"
+                    type="text"
+                    autocomplete="off"
+                  />
+                </span>
+                <span
+                  id="vimeoWrapper"
+                  class="portfolio__form-wrap portfolio__link-wrap form__clue"
+                  data-placeholder="Vimeo"
+                >
+                  <input
+                    id="inputVimeo"
+                    class="portfolio__form-input"
+                    type="text"
+                    autocomplete="off"
+                  />
+                </span>
+                <span
+                  id="beatportWrapper"
+                  class="portfolio__form-wrap portfolio__link-wrap form__clue"
+                  data-placeholder="Beatport"
+                >
+                  <input
+                    id="inputBeatport"
+                    class="portfolio__form-input"
+                    type="text"
+                    autocomplete="off"
+                  />
+                </span>
+                <span
+                  id="mixcloudWrapper"
+                  class="portfolio__form-wrap portfolio__link-wrap form__clue"
+                  data-placeholder="Mixcloud"
+                >
+                  <input
+                    id="inputMixcloud"
+                    class="portfolio__form-input"
+                    type="text"
+                    autocomplete="off"
+                  />
+                </span>
+              </div>
+
+              <!-- инфа о фильтрах при поиске -->
+              <div class="profile__section-name profile__section-name--filter">
+                <span class="profile__section-content">Поисковые фильтры</span>
+                <div class="portfolio__comment">
+                  <span class="portfolio__comment-text"
+                    >Указанные фильтры, которые влияют на результаты вашего
+                    поиска, можно изменить после редактирования профиля в
+                    поисковом блоке.</span
+                  >
+                </div>
+              </div>
+
+              <!-- почта, никнейм -->
+              <div class="profile__section-name">
+                <span class="profile__section-content">Безопасность</span>
+              </div>
+              <div
+                class="portfolio__form portfolio__form--grided portfolio__email"
+              >
+                <span
+                  id="mailWrapper"
+                  class="portfolio__form-wrap portfolio__email-wrap form__clue"
+                  data-placeholder="Почта"
+                >
+                  <input
+                    id="inputMail"
+                    class="portfolio__form-input"
+                    value="mail@mail.com"
+                    type="email"
+                  />
+                </span>
+                <span
+                  id="nicknameWrapper"
+                  class="portfolio__form-wrap portfolio__nickname-wrap form__clue"
+                  data-placeholder="Никнейм"
+                >
+                  <input
+                    id="inputNickname"
+                    class="portfolio__form-input"
+                    type="text"
+                    value="@customnickname"
+                    autocomplete="off"
+                  />
+                </span>
+              </div>
+
+              <!-- пароль -->
+              <div
+                class="portfolio__form portfolio__form--grided portfolio__password"
+              >
+                <span
+                  id="passwordWrapper"
+                  class="portfolio__form-wrap form__password-wrap form__clue"
+                  data-placeholder="Пароль"
+                >
+                  <input
+                    id="inputPassword"
+                    class="portfolio__form-input form__password-input"
+                    value="password"
+                    type="password"
+                    autocomplete="off"
+                  />
+                </span>
+                <span
+                  id="passwordcheckWrapper"
+                  class="portfolio__form-wrap form__password-wrap form__clue"
+                  data-placeholder="Подтверждение"
+                >
+                  <input
+                    id="inputPassworCheck"
+                    class="portfolio__form-input form__password-input"
+                    type="password"
+                    autocomplete="off"
+                  />
+                </span>
+              </div>
+
+              <!-- удаление аккаунта -->
+              <div class="profile__section-name">
+                <span style="color: #f63737;" class="profile__section-content"
+                  >Опасная зона</span
+                >
+              </div>
+              <div class="portfolio__danger">
+                <span class="portfolio__danger-message"
+                  >Удалить аккаунт навсегда без возможности восстановления
+                  данных.</span
+                >
+                <span class="portfolio__danger-action">
+                  <button class="portfolio__danger-btn">Удалить</button>
+                </span>
+              </div>
+
+              <!-- сохранение изменений -->
+              <div class="profile__section-name">
+                <span class="profile__section-content"
+                  >Подтверждение изменений</span
+                >
+              </div>
+              <div class="profile__submit">
+                <span class="profile__submit-message"
+                  >Все внесенные/измененные данные будут сохранены.</span
+                >
+                <span class="profile__submit-action">
+                  <button class="profile__submit-btn">Сохранить</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--END OF PROFILE -->
+
+        <!-- MAIN -->
+        <main class="main">
+          <div class="main__content">
+            <div class="main__search">
+              <div class="search__wrapper">
+                <div class="search">
+                  <span class="search__input">
+                    <input
+                      id="inputSearch"
+                      class="search__input-item"
+                      placeholder="Поиск людей"
+                      type="search"
+                      name
+                    />
+                  </span>
+                  <button id="searchClear" class="search__btn">
+                    <span class="search__icon">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                    <span class="search__text">Очистить</span>
+                  </button>
+
+                  <!-- когда фильтр включен дать кнопке стиль search__btn--active -->
+                  <button id="filterBtn" class="search__btn">
+                    <span class="search__icon">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M7 3C8.86384 3 10.4299 4.27477 10.874 6H19V8H10.874C10.4299 9.72523 8.86384 11 7 11C4.79086 11 3 9.20914 3 7C3 4.79086 4.79086 3 7 3ZM7 9C8.10457 9 9 8.10457 9 7C9 5.89543 8.10457 5 7 5C5.89543 5 5 5.89543 5 7C5 8.10457 5.89543 9 7 9Z"
+                          fill="currentColor"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M17 20C15.1362 20 13.5701 18.7252 13.126 17H5V15H13.126C13.5701 13.2748 15.1362 12 17 12C19.2091 12 21 13.7909 21 16C21 18.2091 19.2091 20 17 20ZM17 18C18.1046 18 19 17.1046 19 16C19 14.8954 18.1046 14 17 14C15.8954 14 15 14.8954 15 16C15 17.1046 15.8954 18 17 18Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                    <span class="search__text">Фильтры</span>
+                  </button>
+                </div>
+
+                <!-- фильтры -->
+                <div id="filterWrapper" class="search__filter search__filter--closed">
+                  <!-- тип -->
+                  <div class="search__filter-type search__filter-section">
+                    <div
+                      class="portfolio__filter-option search__filter-option-type"
+                    >
+                      <div class="search__filter-headering">
+                        <span class="search__filter-label">Тип</span>
+                      </div>
+                      <!-- если фильтр включен к элементу добавляешь класс portfolio__filter--selected -->
+                      <div class="search__filter--selected search__filter-item">
+                        <span class="search__filter-text">Диджей</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">Пиджей</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">Танцор</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">Модель</span>
+                      </div>
+                      <div class="search__filter-item search__filter-item--all">
+                        <span class="search__filter-text">Все</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- страна -->
+                  <div class="search__filter-country search__filter-section">
+                    <div class="search__filter-option">
+                      <div class="search__filter-headering">
+                        <span class="search__filter-label">Страна</span>
+                      </div>
+                      <div class="search__filter--selected search__filter-item">
+                        <span class="search__filter-text">Украина</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">Россия</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">Беларусь</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">Польша</span>
+                      </div>
+                      <div class="search__filter-item search__filter-item--all">
+                        <span class="search__filter-text">Все</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- рост -->
+                  <div class="search__filter-height search__filter-section">
+                    <div class="search__filter-option">
+                      <div class="search__filter-headering">
+                        <span class="search__filter-label">Рост</span>
+                      </div>
+                      <div class="search__filter--selected search__filter-item">
+                        <span class="search__filter-text">Менее 150 см</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">150-160 см</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">161-170 см</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">171-180 см</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">181-190 см</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">191-200 см</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">Более 200 см</span>
+                      </div>
+                      <div class="search__filter-item search__filter-item--all">
+                        <span class="search__filter-text">Все</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- возраст -->
+                  <div class="search__filter-age search__filter-section search__filter-section--last">
+                    <div class="search__filter-option">
+                      <div class="search__filter-headering">
+                        <span class="search__filter-label">Возраст</span>
+                      </div>
+                      <div class="search__filter--selected search__filter-item">
+                        <span class="search__filter-text">Менее 18</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">18-23</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">24-28</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">29-33</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">34-38</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">39-43</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">44-48</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">49-53</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">54-58</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">59-63</span>
+                      </div>
+                      <div class="search__filter-item">
+                        <span class="search__filter-text">59-63</span>
+                      </div>
+                      <div class="search__filter-item search__filter-item--all">
+                        <span class="search__filter-text">Все</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+        
+        
+        
+        
+        //ВЫТЯНУТЬ ШАБЛОН МОЖНО ТУТ!
+              <div class="result">
+                <div class="result__item">
+                  <div class="result__wrapper">
+                    <div class="result__content">
+                      <div class="result__picture">
+                        <!-- аватар чела -->
+                        <img src="images/main/test2.jpg" alt="avatar" />
+                      </div>
+                      <div class="result__info">
+                        <div class="result__nickname">
+                          <!-- никнейм или же логин чела -->
+                          <span class="result__info-nickname"
+                            >@hollandwarddj</span
+                          >
+                        </div>
+                        <div class="result__info-short">
+                          <div class="result__name">
+                            <!-- имя чувака -->
+                            <span class="result__info-name">Holland Ward</span>
+
+                            <!-- возраст и страна -->
+                            <span class="result__info-agecountry">24, USA</span>
+                          </div>
+                          <div class="result__filter">
+                            <!-- главный вид деятельности -->
+                            <span class="result__info-filter">
+                              <span>Танцор</span>
+                            </span>
+                          </div>
+                        </div>
+
+                        <!-- текст о себе -->
+                        <div class="result__info-more">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Animi rerum quos ab debitis aliquid. Quas ex
+                          rerum debitis. Placeat accusantium aspernatur
+                          voluptate recusandae tenetur officia quo illum,
+                          pariatur ut necessitatibus! Consequuntur tempore
+                          veniam incidunt ratione quasi, sunt quis aliquam qui,
+                          repellat, asperiores molestiae earum? Totam at odio,
+                          labore veniam natus, officia vero facere, sint iusto
+                          quo quia nemo quae reiciendis. Vero debitis a magni
+                          porro ducimus, eaque recusandae et assumenda beatae.
+                          Cum, praesentium. Magni, earum quidem, quasi ea
+                          reiciendis itaque sunt corporis a amet doloribus
+                          corrupti fugit iste voluptatem officia. Aliquid itaque
+                          similique quod excepturi. Dignissimos consequatur
+                          animi veniam nisi mollitia non quae asperiores ratione
+                          maxime cum! Illo aut facere suscipit consequuntur,
+                          sunt repellat sint tempora expedita veniam? Accusamus,
+                          perspiciatis. Nesciunt eos assumenda suscipit minus
+                          illo maiores velit iste commodi officia? Ipsam eaque
+                          dicta mollitia porro ratione fuga eius, facilis
+                          laboriosam rerum obcaecati nemo. Culpa, error velit?
+                          Cum, reprehenderit placeat? Doloribus itaque veritatis
+                          commodi placeat fugiat facilis ut blanditiis! Modi
+                          praesentium cumque odio illum quia unde ducimus
+                          voluptas quaerat, odit officiis ea sapiente nulla
+                          minima suscipit at delectus magni inventore! Similique
+                          incidunt, accusamus dolores qui necessitatibus
+                          consequuntur odio fugit nisi quae ex ab, adipisci
+                          ipsum minus modi ad commodi, architecto minima nulla
+                          quos corrupti. Accusantium nemo mollitia hic illum
+                          excepturi. Nostrum voluptatibus fuga vitae eaque
+                          nesciunt iste beatae tempora eum natus! Deserunt
+                          numquam dolorem, voluptas rem maiores natus delectus
+                          alias! Ratione, hic quod! Pariatur, cupiditate ducimus
+                          sed ad ex deserunt. Vel amet assumenda dolorum debitis
+                          nemo nam adipisci consectetur voluptas! Sequi, quis
+                          quia ab debitis quos expedita sint aliquam quaerat
+                          veritatis minima fugiat mollitia commodi ea.
+                          Voluptatibus quis libero cumque! Deserunt, recusandae
+                          cupiditate cumque nobis dolores porro sit doloremque.
+                          Praesentium, sint molestiae. Nemo alias quasi officia
+                          distinctio tenetur dolore eligendi aut esse sint nisi
+                          in laborum perspiciatis, magni itaque rem.
+                        </div>
+                        <div class="result__btn">
+                          <button>Подробнее</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="result__item">
+                  <div class="result__wrapper">
+                    <div class="result__content">
+                      <div class="result__picture">
+                        <!-- аватар чела -->
+                        <img src="images/main/test3.jpg" alt="avatar" />
+                      </div>
+                      <div class="result__info">
+                        <div class="result__nickname">
+                          <!-- никнейм или же логин чела -->
+                          <span class="result__info-nickname"
+                            >@annabelleanderson</span
+                          >
+                        </div>
+                        <div class="result__info-short">
+                          <div class="result__name">
+                            <!-- имя чувака -->
+                            <span class="result__info-name"
+                              >Annabelle Anderson</span
+                            >
+
+                            <!-- возраст и страна -->
+                            <span class="result__info-agecountry">23, USA</span>
+                          </div>
+                          <div class="result__filter">
+                            <!-- главный вид деятельности -->
+                            <span class="result__info-filter">
+                              <span>Модель</span>
+                            </span>
+                          </div>
+                        </div>
+
+                        <!-- текст о себе -->
+                        <div class="result__info-more">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Animi rerum quos ab debitis aliquid. Quas ex
+                          rerum debitis. Placeat accusantium aspernatur
+                          voluptate recusandae tenetur officia quo illum,
+                          pariatur ut necessitatibus! Consequuntur tempore
+                          veniam incidunt ratione quasi, sunt quis aliquam qui,
+                          repellat, asperiores molestiae earum? Totam at odio,
+                          labore veniam natus, officia vero facere, sint iusto
+                          quo quia nemo quae reiciendis. Vero debitis a magni
+                          porro ducimus, eaque recusandae et assumenda beatae.
+                          Cum, praesentium. Magni, earum quidem, quasi ea
+                          reiciendis itaque sunt corporis a amet doloribus
+                          corrupti fugit iste voluptatem officia. Aliquid itaque
+                          similique quod excepturi. Dignissimos consequatur
+                          animi veniam nisi mollitia non quae asperiores ratione
+                          maxime cum! Illo aut facere suscipit consequuntur,
+                          sunt repellat sint tempora expedita veniam? Accusamus,
+                          perspiciatis. Nesciunt eos assumenda suscipit minus
+                          illo maiores velit iste commodi officia? Ipsam eaque
+                          dicta mollitia porro ratione fuga eius, facilis
+                          laboriosam rerum obcaecati nemo. Culpa, error velit?
+                          Cum, reprehenderit placeat? Doloribus itaque veritatis
+                          commodi placeat fugiat facilis ut blanditiis! Modi
+                          praesentium cumque odio illum quia unde ducimus
+                          voluptas quaerat, odit officiis ea sapiente nulla
+                          minima suscipit at delectus magni inventore! Similique
+                          incidunt, accusamus dolores qui necessitatibus
+                          consequuntur odio fugit nisi quae ex ab, adipisci
+                          ipsum minus modi ad commodi, architecto minima nulla
+                          quos corrupti. Accusantium nemo mollitia hic illum
+                          excepturi. Nostrum voluptatibus fuga vitae eaque
+                          nesciunt iste beatae tempora eum natus! Deserunt
+                          numquam dolorem, voluptas rem maiores natus delectus
+                          alias! Ratione, hic quod! Pariatur, cupiditate ducimus
+                          sed ad ex deserunt. Vel amet assumenda dolorum debitis
+                          nemo nam adipisci consectetur voluptas! Sequi, quis
+                          quia ab debitis quos expedita sint aliquam quaerat
+                          veritatis minima fugiat mollitia commodi ea.
+                          Voluptatibus quis libero cumque! Deserunt, recusandae
+                          cupiditate cumque nobis dolores porro sit doloremque.
+                          Praesentium, sint molestiae. Nemo alias quasi officia
+                          distinctio tenetur dolore eligendi aut esse sint nisi
+                          in laborum perspiciatis, magni itaque rem.
+                        </div>
+                        <div class="result__btn">
+                          <button>Подробнее</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="result__item">
+                  <div class="result__wrapper">
+                    <div class="result__content">
+                      <div class="result__picture">
+                        <!-- аватар чела -->
+                        <img src="images/main/test4.jpg" alt="avatar" />
+                      </div>
+                      <div class="result__info">
+                        <div class="result__nickname">
+                          <!-- никнейм или же логин чела -->
+                          <span class="result__info-nickname"
+                            >@hollandwarddj</span
+                          >
+                        </div>
+                        <div class="result__info-short">
+                          <div class="result__name">
+                            <!-- имя чувака -->
+                            <span class="result__info-name">Щукин Фёдор</span>
+
+                            <!-- возраст и страна -->
+                            <span class="result__info-agecountry"
+                              >19, Russia</span
+                            >
+                          </div>
+                          <div class="result__filter">
+                            <!-- главный вид деятельности -->
+                            <span class="result__info-filter">
+                              <span>Диджей</span>
+                            </span>
+                          </div>
+                        </div>
+
+                        <!-- текст о себе -->
+                        <div class="result__info-more">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Animi rerum quos ab debitis aliquid. Quas ex
+                          rerum debitis. Placeat accusantium aspernatur
+                          voluptate recusandae tenetur officia quo illum,
+                          pariatur ut necessitatibus! Consequuntur tempore
+                          veniam incidunt ratione quasi, sunt quis aliquam qui,
+                          repellat, asperiores molestiae earum? Totam at odio,
+                          labore veniam natus, officia vero facere, sint iusto
+                          quo quia nemo quae reiciendis. Vero debitis a magni
+                          porro ducimus, eaque recusandae et assumenda beatae.
+                          Cum, praesentium. Magni, earum quidem, quasi ea
+                          reiciendis itaque sunt corporis a amet doloribus
+                          corrupti fugit iste voluptatem officia. Aliquid itaque
+                          similique quod excepturi. Dignissimos consequatur
+                          animi veniam nisi mollitia non quae asperiores ratione
+                          maxime cum! Illo aut facere suscipit consequuntur,
+                          sunt repellat sint tempora expedita veniam? Accusamus,
+                          perspiciatis. Nesciunt eos assumenda suscipit minus
+                          illo maiores velit iste commodi officia? Ipsam eaque
+                          dicta mollitia porro ratione fuga eius, facilis
+                          laboriosam rerum obcaecati nemo. Culpa, error velit?
+                          Cum, reprehenderit placeat? Doloribus itaque veritatis
+                          commodi placeat fugiat facilis ut blanditiis! Modi
+                          praesentium cumque odio illum quia unde ducimus
+                          voluptas quaerat, odit officiis ea sapiente nulla
+                          minima suscipit at delectus magni inventore! Similique
+                          incidunt, accusamus dolores qui necessitatibus
+                          consequuntur odio fugit nisi quae ex ab, adipisci
+                          ipsum minus modi ad commodi, architecto minima nulla
+                          quos corrupti. Accusantium nemo mollitia hic illum
+                          excepturi. Nostrum voluptatibus fuga vitae eaque
+                          nesciunt iste beatae tempora eum natus! Deserunt
+                          numquam dolorem, voluptas rem maiores natus delectus
+                          alias! Ratione, hic quod! Pariatur, cupiditate ducimus
+                          sed ad ex deserunt. Vel amet assumenda dolorum debitis
+                          nemo nam adipisci consectetur voluptas! Sequi, quis
+                          quia ab debitis quos expedita sint aliquam quaerat
+                          veritatis minima fugiat mollitia commodi ea.
+                          Voluptatibus quis libero cumque! Deserunt, recusandae
+                          cupiditate cumque nobis dolores porro sit doloremque.
+                          Praesentium, sint molestiae. Nemo alias quasi officia
+                          distinctio tenetur dolore eligendi aut esse sint nisi
+                          in laborum perspiciatis, magni itaque rem.
+                        </div>
+                        <div class="result__btn">
+                          <button>Подробнее</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="result__item">
+                  <div class="result__wrapper">
+                    <div class="result__content">
+                      <div class="result__picture">
+                        <!-- аватар чела -->
+                        <img src="images/main/test5.jpg" alt="avatar" />
+                      </div>
+                      <div class="result__info">
+                        <div class="result__nickname">
+                          <!-- никнейм или же логин чела -->
+                          <span class="result__info-nickname"
+                            >@hollandwarddj</span
+                          >
+                        </div>
+                        <div class="result__info-short">
+                          <div class="result__name">
+                            <!-- имя чувака -->
+                            <span class="result__info-name"
+                              >Колесник Мария</span
+                            >
+
+                            <!-- возраст и страна -->
+                            <span class="result__info-agecountry"
+                              >40, Ukraine</span
+                            >
+                          </div>
+                          <div class="result__filter">
+                            <!-- главный вид деятельности -->
+                            <span class="result__info-filter">
+                              <span>Диджей</span>
+                            </span>
+                          </div>
+                        </div>
+
+                        <!-- текст о себе -->
+                        <div class="result__info-more">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Animi rerum quos ab debitis aliquid. Quas ex
+                          rerum debitis. Placeat accusantium aspernatur
+                          voluptate recusandae tenetur officia quo illum,
+                          pariatur ut necessitatibus! Consequuntur tempore
+                          veniam incidunt ratione quasi, sunt quis aliquam qui,
+                          repellat, asperiores molestiae earum? Totam at odio,
+                          labore veniam natus, officia vero facere, sint iusto
+                          quo quia nemo quae reiciendis. Vero debitis a magni
+                          porro ducimus, eaque recusandae et assumenda beatae.
+                          Cum, praesentium. Magni, earum quidem, quasi ea
+                          reiciendis itaque sunt corporis a amet doloribus
+                          corrupti fugit iste voluptatem officia. Aliquid itaque
+                          similique quod excepturi. Dignissimos consequatur
+                          animi veniam nisi mollitia non quae asperiores ratione
+                          maxime cum! Illo aut facere suscipit consequuntur,
+                          sunt repellat sint tempora expedita veniam? Accusamus,
+                          perspiciatis. Nesciunt eos assumenda suscipit minus
+                          illo maiores velit iste commodi officia? Ipsam eaque
+                          dicta mollitia porro ratione fuga eius, facilis
+                          laboriosam rerum obcaecati nemo. Culpa, error velit?
+                          Cum, reprehenderit placeat? Doloribus itaque veritatis
+                          commodi placeat fugiat facilis ut blanditiis! Modi
+                          praesentium cumque odio illum quia unde ducimus
+                          voluptas quaerat, odit officiis ea sapiente nulla
+                          minima suscipit at delectus magni inventore! Similique
+                          incidunt, accusamus dolores qui necessitatibus
+                          consequuntur odio fugit nisi quae ex ab, adipisci
+                          ipsum minus modi ad commodi, architecto minima nulla
+                          quos corrupti. Accusantium nemo mollitia hic illum
+                          excepturi. Nostrum voluptatibus fuga vitae eaque
+                          nesciunt iste beatae tempora eum natus! Deserunt
+                          numquam dolorem, voluptas rem maiores natus delectus
+                          alias! Ratione, hic quod! Pariatur, cupiditate ducimus
+                          sed ad ex deserunt. Vel amet assumenda dolorum debitis
+                          nemo nam adipisci consectetur voluptas! Sequi, quis
+                          quia ab debitis quos expedita sint aliquam quaerat
+                          veritatis minima fugiat mollitia commodi ea.
+                          Voluptatibus quis libero cumque! Deserunt, recusandae
+                          cupiditate cumque nobis dolores porro sit doloremque.
+                          Praesentium, sint molestiae. Nemo alias quasi officia
+                          distinctio tenetur dolore eligendi aut esse sint nisi
+                          in laborum perspiciatis, magni itaque rem.
+                        </div>
+                        <div class="result__btn">
+                          <button>Подробнее</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="main__sidebar">
+              <div class="sidebar__content">
+                <div class="sidebar__profile">
+                  <div class="sidebar__profile-image">
+                    <img src="images/main/profile.jpg" alt="avatar" />
+                  </div>
+                  <div class="sidebar__profile-btn">
+                    <!-- при клике откр редактирования акк -->
+                    <button id="sidebarProfileBtn">Настроить профиль</button>
+                  </div>
+                </div>
+
+                <!-- ad -->
+                <div class="sidebar__ad"></div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <!--END OF MAIN -->
+
+        <!--FOOTER -->
+        <footer class="footer__block">
+          <div class="footer__wrapper block__wrapper">
+            <div class="footer__content">
+              <div class="footer__logo">
+                <a class="footer__logo-a" href="landing.html">Allquasars</a>
+                <div class="footer__rights-text">2020 © Copyright</div>
+              </div>
+              <div class="footer__nav">
+                <ul class="footer__nav-ul footer__nav-ul--first">
+                  <li class="footer__nav-item footer__nav-item--first">
+                    Поддержка
+                  </li>
+                  <li class="footer__nav-item">
+                    <a href="#">Помощь</a>
+                  </li>
+                  <li class="footer__nav-item">
+                    <a href="#">Условия и положения</a>
+                  </li>
+                  <li class="footer__nav-item">
+                    <a href="#">Политика конфиденциальности</a>
+                  </li>
+                  <li class="footer__nav-item">
+                    <a href="#">Безопасность</a>
+                  </li>
+                </ul>
+                <ul class="footer__nav-ul">
+                  <li class="footer__nav-item footer__nav-item--first">
+                    Продукт
+                  </li>
+                  <li class="footer__nav-item">
+                    <a href="#">Узнать Больше</a>
+                  </li>
+                  <li class="footer__nav-item">
+                    <a href="#">Регистрация</a>
+                  </li>
+                  <li class="footer__nav-item">
+                    <a href="#">Войти</a>
+                  </li>
+                </ul>
+                <ul class="footer__nav-ul">
+                  <li class="footer__nav-item footer__nav-item--first">
+                    Компания
+                  </li>
+                  <li class="footer__nav-item">
+                    <a href="#">Instagram</a>
+                  </li>
+                  <li class="footer__nav-item">
+                    <a href="#">Facebook</a>
+                  </li>
+                  <li class="footer__nav-item">
+                    <a href="#">Twitter</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!--END OF FOOTER -->
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<script>
+import axios from "axios";
+import loading from './loading';
+
+export default {
+  name: "newMain",
+  components:{loading},
+  data() {
+    return {
+      inputFirstName: false,
+      inputLastName: false,
+      inputBirthdayDate: false,
+        infoLoad:false,
+
+//SEND TO THER SERVER
+      startDisabled: false,
+      firstName:'_NIKOLAS_',
+      lastName:'_CHUB_',
+      birthdayDate:"1111-11-11",
+      type:'_MANAGER_',
+      countrys:{
+          UKR:true,
+          RUS:true,
+          BEL:false,
+          POL:true,
+      },
+      height:1,
+      description:'_DESCRIPTION_',
+//SEND TO THER SERVER
+
+    };
+  },
+  computed: {
+        inputFirstNameComp:function(){if ((this.inputFirstName)||(!this.firstName=='')){return true}else{return false}},
+        inputLastNameComp:function(){if ((this.inputLastName)||(!this.lastName=='')){return true}else{return false}},
+        inputBirthdayDateComp:function(){if ((this.inputBirthdayDate)||(!this.birthdayDate=='')){return true}else{return false}},
+
+  },
+  created() {
+    if (localStorage["token"] == null) {
+      this.$router.push("/error_access");
+    }
+  },
+  beforeMount() {
+    console.log("beforeMount");
+    axios
+      .get("http://" + document.domain + ":5000/user", {
+        headers: { token: localStorage["token"] },
+      })
+      .then(
+        (res) => {
+            this.infoLoad=true;
+            this.firstName = res.data.user.firstName;
+            this.lastName = res.data.user.lastName;
+            this.birthdayDate = res.data.user.birthday.slice(0,10);
+            this.type = res.data.user.type;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  },
+  methods: {
+    test() {
+      console.log("TEST");
+    },
+    routeToUserCart(test) {
+      const ide = test.target.dataset.id;
+      this.$router.push("/user/" + ide);
+      // this.$router.push({name:'user', query:{'user':ide} });
+      // console.log(ide);
+    },
+    showMiniDesciption(test) {
+      console.log("lenght" + this.MiniDesciption.length);
+      const ide = test.target.dataset.id;
+      // const item = test.target.dataset.item;
+      // this.MiniDesciption = this.searchResult[ide];
+      // console.log(MiniDesciption);
+      let inputs = { name: 1, type: 1, email: 1, _id: 1 };
+
+      axios
+        .get("http://" + document.domain + ":5000/userDescription", {
+          headers: { token: localStorage["token"], id: ide, inputs },
+        })
+        .then(
+          (res) => {
+            if (res.status == 200) {
+              // console.log(res.data.user);
+              this.MiniDesciption = res.data.user;
+              this.MiniDesciptionShow = true;
+              console.log(res.data.user);
+            }
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      console.log("lenght" + this.MiniDesciption.length);
+    },
+    logout() {
+      localStorage.removeItem("token");
+      this.$router.push("/");
+    },
+    find() {
+      // console.log('filters');
+
+      let filters = {
+        type: this.type,
+      };
+
+      axios
+        .post("http://" + document.domain + ":5000/getUsers", {
+          token: localStorage["token"],
+          filters,
+        })
+        .then(
+          (res) => {
+            if (res.status == 200) {
+              this.searchResult = res.data.result;
+            }
+            console.log(res);
+          },
+          (err) => {
+            console.log(err.response);
+          }
+        );
+    },
+  },
+};
+</script>
+
+<style>
+.li-wrapper {
+  padding: 2px;
+  margin: 5px;
+  border: 1px solid black;
+  list-style-type: none;
+  transition: 0.15s;
+}
+.li-wrapper:hover {
+  transform: scale(1.02);
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+div.container6 {
+  height: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center }
+div.container6 p {
+  margin: 0 }
+</style>
