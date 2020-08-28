@@ -279,6 +279,7 @@
                   :class="{ 'form__clue--clicked':inputLastNameComp}"
                 >
                   <input
+
                   @focus="inputLastName = true" @blur="inputLastName = false"
                     v-model="lastName"
                     id="inputSurname"
@@ -317,11 +318,11 @@
                   data-placeholder="Тип"
                 >
                   <input
+                    disabled
                     id="inputType"
                     v-model="type"
                     class="portfolio__form-input portfolio__type-input "
                     type="text"
-                    value="Заказчик"
                     autocomplete="off"
                     tabindex="-1"
                   />
@@ -679,23 +680,32 @@
                 class="portfolio__form portfolio__form--grided portfolio__email"
               >
                 <span
+                  :class="{ 'form__clue--clicked':inputEmailComp}"
                   id="mailWrapper"
                   class="portfolio__form-wrap portfolio__email-wrap form__clue"
                   data-placeholder="Почта"
                 >
                   <input
+                  @focus="inputEmail = true" @blur="inputEmail = false"
+                    v-model='email'
                     id="inputMail"
+                    required
+                    disabled
                     class="portfolio__form-input"
                     value="mail@mail.com"
                     type="email"
                   />
                 </span>
                 <span
+                  :class="{ 'form__clue--clicked':inputNicknameComp}"
                   id="nicknameWrapper"
                   class="portfolio__form-wrap portfolio__nickname-wrap form__clue"
                   data-placeholder="Никнейм"
                 >
                   <input
+                  @focus="inputNickName = true" @blur="inputNickName = false"
+                    v-model='nickname'
+                    disabled
                     id="inputNickname"
                     class="portfolio__form-input"
                     type="text"
@@ -710,11 +720,15 @@
                 class="portfolio__form portfolio__form--grided portfolio__password"
               >
                 <span
+                  :class="{ 'form__clue--clicked':inputPasswordComp}"
                   id="passwordWrapper"
                   class="portfolio__form-wrap form__password-wrap form__clue"
                   data-placeholder="Пароль"
                 >
                   <input
+                  @focus="inputPassword = true" @blur="inputPassword = false"
+                    v-model='password'
+                    disabled
                     id="inputPassword"
                     class="portfolio__form-input form__password-input"
                     value="password"
@@ -723,11 +737,15 @@
                   />
                 </span>
                 <span
+                  :class="{ 'form__clue--clicked':inputPasswordCheckComp}"
                   id="passwordcheckWrapper"
                   class="portfolio__form-wrap form__password-wrap form__clue"
                   data-placeholder="Подтверждение"
                 >
                   <input
+                  @focus="inputPasswordcheck = true" @blur="inputPasswordcheck = false"
+                    v-model='passwordcheck'
+                    disabled
                     id="inputPassworCheck"
                     class="portfolio__form-input form__password-input"
                     type="password"
@@ -1418,6 +1436,10 @@ export default {
       lastName:'_CHUB_',
       birthdayDate:"1111-11-11",
       type:'_MANAGER_',
+      email:'_EMAIL@MAIL.COM_',
+      password:'_PASSWORD_',
+      nickname:'_NICKNAME_',
+      passwordcheck:'_PASSWORDCHECK_',
       countrys:{
           UKR:true,
           RUS:true,
@@ -1444,6 +1466,10 @@ export default {
         vimeo:false,
         mixcolud:false
       },
+      inputEmail:false,
+      inputNickName:false,
+      inputPassword:false,
+      inputPasswordcheck:false,
       height:1,
       description:'_DESCRIPTION_',
 //SEND TO THER SERVER
@@ -1463,6 +1489,12 @@ export default {
         inputLinkVimeoComp:function(){if ((this.inputLinks.vimeo)||(!this.links.vimeo=='')){return true}else{return false}},
         inputLinkBeatportComp:function(){if ((this.inputLinks.beatport)||(!this.links.beatport=='')){return true}else{return false}},
         inputLinkMixcoludComp:function(){if ((this.inputLinks.mixcolud)||(!this.links.mixcolud=='')){return true}else{return false}},
+  
+        inputEmailComp:function(){if ((this.inputEmail)||(!this.email=='')){return true}else{return false}},
+        inputNicknameComp:function(){if ((this.inputNickName)||(!this.nickname=='')){return true}else{return false}},
+        inputPasswordComp:function(){if ((this.inputPassword)||(!this.password=='')){return true}else{return false}},
+        inputPasswordCheckComp:function(){if ((this.inputPasswordcheck)||(!this.passwordcheck=='')){return true}else{return false}},
+
   },
   created() {
     if (localStorage["token"] == null) {
