@@ -343,7 +343,7 @@
               </div>
               <div class="portfolio__filter">
                 <!-- тип -->
-                <div class="portfolio__filter-type portfolio__filter-section" v-if='type!="_MANAGER_"'>
+                <div class="portfolio__filter-type portfolio__filter-section" v-if='type!="manager"'>
                   <div
                     class="portfolio__filter-option portfolio__filter-option-type"
                   >
@@ -766,7 +766,7 @@
                   данных.</span
                 >
                 <span class="portfolio__danger-action">
-                  <button class="portfolio__danger-btn">Удалить</button>
+                  <button class="portfolio__danger-btn"  @click="removeProfile">Удалить</button>
                 </span>
               </div>
 
@@ -781,7 +781,7 @@
                   >Все внесенные/измененные данные будут сохранены.</span
                 >
                 <span class="profile__submit-action">
-                  <button class="profile__submit-btn">Сохранить</button>
+                  <button class="profile__submit-btn" @click="saveInfo()">Сохранить</button>
                 </span>
               </div>
             </div>
@@ -1435,11 +1435,11 @@ export default {
       firstName:'_NIKOLAS_',
       lastName:'_CHUB_',
       birthdayDate:"1111-11-11",
-      type:'_MANAGER_',
+      type:'_MANAGER_',//NOT SENDED
       email:'_EMAIL@MAIL.COM_',
-      password:'_PASSWORD_',
-      nickname:'_NICKNAME_',
-      passwordcheck:'_PASSWORDCHECK_',
+      password:'_PASSWORD_',//NOT SENDED
+      nickname:'_NICKNAME_',//NOT SENDED
+      passwordcheck:'_PASSWORDCHECK_',//NOT SENDED
       countrys:{
           UKR:true,
           RUS:true,
@@ -1510,10 +1510,22 @@ export default {
       .then(
         (res) => {
           console.log(res.data.user);
+
             this.firstName = res.data.user.firstName;
             this.lastName = res.data.user.lastName;
             this.birthdayDate = res.data.user.birthday.slice(0,10);
             this.type = res.data.user.type;
+
+            this.description = res.data.user.description;
+
+            this.links = res.data.user.links;
+            this.countrys = res.data.user.countrys;
+            this.height = res.data.user.height;
+
+
+            this.email = res.data.user.email;
+            this.startDisabled=res.data.user.startDisabled;
+
             this.infoLoad=true;
         },
         (err) => {
@@ -1561,6 +1573,65 @@ export default {
     logout() {
       localStorage.removeItem("token");
       this.$router.push("/");
+    },
+    removeProfile(){
+      let password;
+      if(confirm('Вы действительно хотите удалить аккаунт? Это действие необратимо.')){
+        password = prompt('Введите ваш пароль, для удаления аккаунта.');
+
+        axios
+        .delete("http://" + document.domain + ":5000/user", {
+          token: localStorage["token"],
+          password,
+        })
+        .then(
+          (res) => {
+            // if (res.status == 200) {
+            //   alert(res.data.message);
+            //   document.location.reload(true);
+            // }
+            console.log(res);
+          },
+          (err) => {
+            console.log(err.response);
+          }
+        );
+      }
+
+            
+      // result = prompt(title, [default]);
+    },
+    saveInfo(){
+      const newUserValues = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        birthday: this. birthdayDate,
+        email: this.email,
+        countrys: this.countrys,
+        links: this.links,
+        height: this.height,
+        description:this.description,
+        startDisabled:this.startDisabled,
+      };
+      
+      axios
+        .post("http://" + document.domain + ":5000/user", {
+          token: localStorage["token"],
+          newUserValues,
+        })
+        .then(
+          (res) => {
+            if (res.status == 200) {
+              alert(res.data.message);
+              document.location.reload(true);
+            }
+            console.log(res);
+          },
+          (err) => {
+            console.log(err.response);
+          }
+        );
+      console.log(newUserValues);
     },
     find() {
       // console.log('filters');
