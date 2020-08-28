@@ -28,7 +28,7 @@
                 </button>
               </li>
               <li class="header__nav-item">
-                <a class="header__nav-a" href="login.html">Выйти</a>
+                <a class="header__nav-a" @click="logout">Выйти</a>
               </li>
               <!-- PROFILE -->
               <li class="header__nav-item header__profile">
@@ -90,7 +90,7 @@
                     <span class="profile__nav-account-text" >{{firstName}}</span>
                   </div>
                   <div class="profile__nav-account-setting">
-                    <button class="profile__nav-account-btn">Выйти</button>
+                    <button class="profile__nav-account-btn" @click="logout">Выйти</button>
                     <button
                       class="profile__nav-account-btn profile__nav-account-delete"
                     >
@@ -130,7 +130,7 @@
                     </a>
                   </li>
                   <li class="profile__nav-item-first profile__nav-item">
-                    <button class="profile__nav-btn profile__nav-btn-profile">
+                    <button class="profile__nav-btn profile__nav-btn-profile" >
                       <span class="profile__nav-icon">
                         <svg
                           width="24"
@@ -147,7 +147,7 @@
                           />
                         </svg>
                       </span>
-                      <span class="profile__nav-btn-item">Безопасность</span>
+                      <span class="profile__nav-btn-item" >Безопасность</span>
                     </button>
                   </li>
                   <li class="profile__nav-item-first profile__nav-item">
@@ -342,7 +342,7 @@
               </div>
               <div class="portfolio__filter">
                 <!-- тип -->
-                <div class="portfolio__filter-type portfolio__filter-section">
+                <div class="portfolio__filter-type portfolio__filter-section" v-if='type!="_MANAGER_"'>
                   <div
                     class="portfolio__filter-option portfolio__filter-option-type"
                   >
@@ -531,22 +531,31 @@
                 class="portfolio__form portfolio__form--grided portfolio__link"
               >
                 <span
+                  :class="{ 'form__clue--clicked form__clue--soundcloud':inputLinkSoundcloudComp}"
+                
                   id="soundcloudWrapper"
                   class="portfolio__form-wrap portfolio__link-wrap form__clue"
                   data-placeholder="Soundcloud"
                 >
                   <input
+                  v-model='links.soundcloud'
+                  @focus="inputLinks.soundcloud = true" @blur="inputLinks.soundcloud = false"
+
                     id="inputSoundcloud"
                     class="portfolio__form-input"
                     type="text"
                   />
                 </span>
                 <span
+                  :class="{ 'form__clue--clicked form__clue--spotify':inputLinkSpotifyComp}"
                   id="spotifyWrapper"
                   class="portfolio__form-wrap form__clue"
                   data-placeholder="Spotify"
                 >
                   <input
+                  v-model='links.spotify'
+                  @focus="inputLinks.spotify = true" @blur="inputLinks.spotify = false"
+
                     id="inputSpotify"
                     class="portfolio__form-input"
                     type="text"
@@ -554,11 +563,15 @@
                   />
                 </span>
                 <span
+                  :class="{ 'form__clue--clicked form__clue--itunes':inputLinkItunesComp}"
                   id="itunesWrapper"
                   class="portfolio__form-wrap portfolio__link-wrap form__clue"
                   data-placeholder="iTunes"
                 >
                   <input
+                  v-model='links.itunes'
+                  @focus="inputLinks.itunes = true" @blur="inputLinks.itunes = false"
+
                     id="inputiTunes"
                     class="portfolio__form-input"
                     type="text"
@@ -566,11 +579,15 @@
                   />
                 </span>
                 <span
+                  :class="{ 'form__clue--clicked form__clue--applemusic':inputApplemusicComp}"
                   id="appleMusicWrapper"
                   class="portfolio__form-wrap form__clue"
                   data-placeholder="Apple Music"
                 >
                   <input
+                  v-model='links.applemusic'
+                  @focus="inputLinks.applemusic = true" @blur="inputLinks.applemusic = false"
+
                     id="inputAppleMusic"
                     class="portfolio__form-input"
                     type="text"
@@ -578,11 +595,15 @@
                   />
                 </span>
                 <span
+                  :class="{ 'form__clue--clicked form__clue--youtube':inputLinkYoutubeComp}"
+
                   id="youtubeWrapper"
                   class="portfolio__form-wrap portfolio__link-wrap form__clue"
                   data-placeholder="YouTube"
                 >
                   <input
+                  v-model='links.youtube'
+                  @focus="inputLinks.youtube = true" @blur="inputLinks.youtube = false"
                     id="inputYoutube"
                     class="portfolio__form-input"
                     type="text"
@@ -590,11 +611,14 @@
                   />
                 </span>
                 <span
+                  :class="{ 'form__clue--clicked form__clue--vimeo':inputLinkVimeoComp}"
                   id="vimeoWrapper"
                   class="portfolio__form-wrap portfolio__link-wrap form__clue"
                   data-placeholder="Vimeo"
                 >
                   <input
+                  v-model='links.vimeo'
+                  @focus="inputLinks.vimeo = true" @blur="inputLinks.vimeo = false"
                     id="inputVimeo"
                     class="portfolio__form-input"
                     type="text"
@@ -602,11 +626,15 @@
                   />
                 </span>
                 <span
+                  :class="{ 'form__clue--clicked form__clue--beatport':inputLinkBeatportComp}"
                   id="beatportWrapper"
                   class="portfolio__form-wrap portfolio__link-wrap form__clue"
                   data-placeholder="Beatport"
                 >
                   <input
+                  v-model='links.beatport'
+                  @focus="inputLinks.beatport = true" @blur="inputLinks.beatport = false"
+
                     id="inputBeatport"
                     class="portfolio__form-input"
                     type="text"
@@ -614,11 +642,15 @@
                   />
                 </span>
                 <span
+                  :class="{ 'form__clue--clicked form__clue--mixcloud':inputLinkMixcoludComp}"
                   id="mixcloudWrapper"
                   class="portfolio__form-wrap portfolio__link-wrap form__clue"
                   data-placeholder="Mixcloud"
                 >
                   <input
+                  v-model='links.mixcolud'
+                  @focus="inputLinks.mixcolud = true" @blur="inputLinks.mixcolud = false"
+
                     id="inputMixcloud"
                     class="portfolio__form-input"
                     type="text"
@@ -1392,6 +1424,26 @@ export default {
           BEL:false,
           POL:true,
       },
+      links:{
+        soundcloud:'',
+        itunes:'',
+        youtube:'',
+        beatport:'',
+        spotify:'',
+        applemusic:'',
+        vimeo:'',
+        mixcolud:''
+      },
+      inputLinks:{
+        soundcloud:false,
+        itunes:false,
+        youtube:false,
+        beatport:false,
+        spotify:false,
+        applemusic:false,
+        vimeo:false,
+        mixcolud:false
+      },
       height:1,
       description:'_DESCRIPTION_',
 //SEND TO THER SERVER
@@ -1402,7 +1454,15 @@ export default {
         inputFirstNameComp:function(){if ((this.inputFirstName)||(!this.firstName=='')){return true}else{return false}},
         inputLastNameComp:function(){if ((this.inputLastName)||(!this.lastName=='')){return true}else{return false}},
         inputBirthdayDateComp:function(){if ((this.inputBirthdayDate)||(!this.birthdayDate=='')){return true}else{return false}},
-
+        
+        inputLinkSoundcloudComp:function(){if ((this.inputLinks.soundcloud)||(!this.links.soundcloud=='')){return true}else{return false}},
+        inputLinkSpotifyComp:function(){if ((this.inputLinks.spotify)||(!this.links.spotify=='')){return true}else{return false}},
+        inputLinkItunesComp:function(){if ((this.inputLinks.itunes)||(!this.links.itunes=='')){return true}else{return false}},
+        inputApplemusicComp:function(){if ((this.inputLinks.applemusic)||(!this.links.applemusic=='')){return true}else{return false}},
+        inputLinkYoutubeComp:function(){if ((this.inputLinks.youtube)||(!this.links.youtube=='')){return true}else{return false}},
+        inputLinkVimeoComp:function(){if ((this.inputLinks.vimeo)||(!this.links.vimeo=='')){return true}else{return false}},
+        inputLinkBeatportComp:function(){if ((this.inputLinks.beatport)||(!this.links.beatport=='')){return true}else{return false}},
+        inputLinkMixcoludComp:function(){if ((this.inputLinks.mixcolud)||(!this.links.mixcolud=='')){return true}else{return false}},
   },
   created() {
     if (localStorage["token"] == null) {
@@ -1417,11 +1477,12 @@ export default {
       })
       .then(
         (res) => {
-            this.infoLoad=true;
+          console.log(res.data.user);
             this.firstName = res.data.user.firstName;
             this.lastName = res.data.user.lastName;
             this.birthdayDate = res.data.user.birthday.slice(0,10);
             this.type = res.data.user.type;
+            this.infoLoad=true;
         },
         (err) => {
           console.log(err);
