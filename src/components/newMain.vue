@@ -12,7 +12,6 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/fonts.css" />
     <div class="page__wrapper">
       <div class="page__content">
         <!-- HEADER -->
@@ -1413,24 +1412,27 @@
       </div>
     </div>
   </div>
+  <popup  v-bind:active="popupflag" title='test1' context></popup>
 </div>
 </template>
 
 <script>
 import axios from "axios";
 import loading from './loading';
+import popup from './popup';
 
 export default {
   name: "newMain",
-  components:{loading},
+  components:{loading, popup},
   data() {
     return {
+      popupflag:false,
       inputFirstName: false,
       inputLastName: false,
       inputBirthdayDate: false,
         infoLoad:false,
 
-//SEND TO THER SERVER
+      //SEND TO THER SERVER
       startDisabled: false,
       firstName:'_NIKOLAS_',
       lastName:'_CHUB_',
@@ -1472,8 +1474,9 @@ export default {
       inputPasswordcheck:false,
       height:1,
       description:'_DESCRIPTION_',
-//SEND TO THER SERVER
-
+      popupTitle: 'popupTitle',
+      popupContext: 'popupContext'
+      //SEND TO THER SERVER
     };
   },
   computed: {
@@ -1498,7 +1501,7 @@ export default {
   },
   created() {
     if (localStorage["token"] == null) {
-      this.$router.push("/error_access");
+      this.$router.push("/error");
     }
   },
   beforeMount() {
@@ -1534,8 +1537,11 @@ export default {
       );
   },
   methods: {
-    test() {
-      console.log("TEST");
+    popupShow(Title,Context) {  
+          this.$emit('popup', {
+              Title,
+              Context
+      })
     },
     routeToUserCart(test) {
       const ide = test.target.dataset.id;
@@ -1622,13 +1628,13 @@ export default {
         .then(
           (res) => {
             if (res.status == 200) {
-              alert(res.data.message);
-              document.location.reload(true);
+              this.popupShow('Успех!','Ваши данные успешно схранены, обновите страницу.');
+              // document.location.reload(true);
             }
-            console.log(res);
           },
-          (err) => {
-            console.log(err.response);
+          () => {
+              this.popupShow('Упс...','Что-то пошло не так!');
+            // console.log(err.response);
           }
         );
       console.log(newUserValues);

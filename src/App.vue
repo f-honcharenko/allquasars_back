@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div v-if="admintool">
+    <link rel="stylesheet" href="/styles/fonts.css">
+    <link rel="stylesheet" href="/styles/popup.css">
+    <div v-if="admintool"  >
       <router-link to="/" exact>Landing</router-link>
       <br />
       <router-link to="/main">main</router-link>
@@ -16,8 +18,8 @@
       <hr />
     </div>
     <!-- <transition name="fade" mode="out-in"> -->
-    <router-view></router-view>
-    <!-- </transition> -->
+    <router-view  @popup="popupToggle"></router-view>
+    <popup @popup="popupToggle" :title='popupTitle' :context='popupContext' :class="{'popup-active':popupflag}"/>
   </div>
 </template>
 
@@ -25,18 +27,32 @@
 // import func from "../vue-temp/vue-editor-bridge";
 // import VueRouter from 'vue-router'
 // import signup from './components/signup';
-// import login from './components/login';
+import popup from './components/popup';
 // import config from './config';
 
 export default {
   name: "App",
   data: function () {
     return {
+      popupTitle:'',
+      popupContext:'',
+      testc:0,
       admintool: false,
+      popupflag:false,
     };
   },
-  methods: {},
-  components: {},
+  methods: { 
+        popupToggle(data){
+          console.log(data);
+            this.popupflag = !this.popupflag;
+            this.popupTitle = data.Title;
+            this.popupContext = data.Context;
+        },
+    test:function(){
+      console.log('emit');
+    },
+  },
+  components: {popup},
 };
 </script>
 

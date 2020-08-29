@@ -2,8 +2,6 @@
 <div>
 
     <link rel="stylesheet" href="/styles/landing.css">
-    <link rel="stylesheet" href="/styles/fonts.css">
-
 <div class="page__wrapper">
         <!-- FIRST BLOCK -->
         <div class="first__block">
