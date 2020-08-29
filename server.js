@@ -28,7 +28,8 @@ app.post('/signup', (req, res, next) => {
         birthday: req.body.date,
         email: req.body.email,
         type: req.body.type,
-        password: bcrypt.hashSync(req.body.password, config.bcrypt.salt)
+        password: bcrypt.hashSync(req.body.password, config.bcrypt.salt),
+        startDisabled:true,
     });
 
     user.findOne(
