@@ -46,6 +46,10 @@ const userSchema = new Schema({
     description: {
         type: String,
         required: false
+    },
+    nickname: {
+        type: String,
+        required: false
     }
     
 },{

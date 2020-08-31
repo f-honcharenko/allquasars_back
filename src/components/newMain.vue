@@ -686,9 +686,15 @@
                     />
                   </span>
                 </div>
-
+                        <!-- комментарий если ошибка -->
+                        <!-- убираешь у span .portfolio__error-item--disabled и сообщение показывается -->
+                        <!-- изначально все скрыто -->
+                        <div class="portfolio__error portfolio__error--grided">
+                            <span class="portfolio__error-item portfolio__error-item--mail portfolio__error-item--disabled">Неверный адрес электронной почты</span>
+                            <span class="portfolio__error-item portfolio__error-item--nickname portfolio__error-item--disabled">Этот никнейм уже занят</span>
+                        </div>
                 <!-- пароль -->
-                <div class="portfolio__form portfolio__form--grided portfolio__password">
+                <div class="portfolio__form portfolio__form--grided">
                   <span
                     :class="{ 'form__clue--clicked':inputPasswordComp}"
                     id="passwordWrapper"
@@ -725,9 +731,15 @@
                     />
                   </span>
                 </div>
-
+                       <!-- комментарий если ошибка -->
+                        <!-- убираешь у span .portfolio__error-item--disabled и сообщение показывается -->
+                        <!-- изначально все скрыто -->
+                        <div class="portfolio__error portfolio__error--grided">
+                            <span class="portfolio__error-item portfolio__error-item--mail portfolio__error-item--disabled">Пароль должен содержать ...</span>
+                            <span class="portfolio__error-item portfolio__error-item--nickname portfolio__error-item--disabled">Пароль не совпадает</span>
+                        </div>
                 <!-- удаление аккаунта -->
-                <div class="profile__section-name">
+                        <div class="profile__section-name profile__section-name--danger">
                   <span style="color: #f63737;" class="profile__section-content">Опасная зона</span>
                 </div>
                 <div class="portfolio__danger">
@@ -740,8 +752,8 @@
                   </span>
                 </div>
 
-                <!-- сохранение изменений -->
-                <div class="profile__section-name">
+                <!-- сохранение изменений old version without sticky and date -->
+                <!-- <div class="profile__section-name">
                   <span class="profile__section-content">Подтверждение изменений</span>
                 </div>
                 <div class="profile__submit">
@@ -750,7 +762,19 @@
                   >Все внесенные/измененные данные будут сохранены.</span>
                   <span class="profile__submit-action">
                     <button class="profile__submit-btn" @click="saveInfo()">Сохранить</button>
-                  </span>
+                  </span> -->
+                <!-- сохранение изменений -->
+
+                        <div class="profile__submit--sticky">
+                            <div class="profile__section-name">
+                                <span class="profile__section-content">Подтверждение изменений</span>
+                            </div>
+                            <div class="profile__submit">
+                                <span class="profile__submit-message">Все внесенные/измененные данные будут сохранены. Последнее сохранение <span class="profile__submit-last">31.08.20</span></span>
+                                <span class="profile__submit-action">
+                                    <button class="profile__submit-btn"  @click="saveInfo()" >Сохранить</button>
+                                </span>
+                            </div>
                 </div>
               </div>
             </div>
@@ -789,7 +813,7 @@
                           />
                         </svg>
                       </span>
-                      <span class="search__text">Очистить</span>
+                      <span class="search__text" @click="buttonClear">Очистить</span>
                     </button>
 
                     <!-- когда фильтр включен дать кнопке стиль search__btn--active -->
@@ -816,12 +840,12 @@
                           />
                         </svg>
                       </span>
-                      <span class="search__text">Фильтры</span>
+                      <span class="search__text" @click="toggleFilters()">Фильтры</span>
                     </button>
                   </div>
 
                   <!-- фильтры -->
-                  <div id="filterWrapper" class="search__filter search__filter--closed">
+                  <div id="filterWrapper" class="search__filter " :class="{'search__filter--closed':!showfiltersFrom}">
                     <!-- тип -->
                     <div class="search__filter-type search__filter-section">
                       <div class="portfolio__filter-option search__filter-option-type">
@@ -829,19 +853,19 @@
                           <span class="search__filter-label">Тип</span>
                         </div>
                         <!-- если фильтр включен к элементу добавляешь класс portfolio__filter--selected -->
-                        <div class="search__filter--selected search__filter-item">
-                          <span class="search__filter-text">Диджей</span>
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.types.dj}"  @click="filters.types.dj= !filters.types.dj">
+                          <span class="search__filter-text"> Диджей</span>
                         </div>
-                        <div class="search__filter-item">
-                          <span class="search__filter-text">Пиджей</span>
+                        <div class="search__filter-item " :class="{'search__filter--selected ':filters.types.pj}"  @click="filters.types.pj= !filters.types.pj">
+                          <span class="search__filter-text ">Пиджей</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item " :class="{'search__filter--selected ':filters.types.dancer}"  @click="filters.types.dancer= !filters.types.dancer"> 
                           <span class="search__filter-text">Танцор</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.types.model}"  @click="filters.types.model= !filters.types.model">
                           <span class="search__filter-text">Модель</span>
                         </div>
-                        <div class="search__filter-item search__filter-item--all">
+                        <div class="search__filter-item search__filter-item--all"  @click="buttonFiltersAll(filters.types)">
                           <span class="search__filter-text">Все</span>
                         </div>
                       </div>
@@ -851,22 +875,22 @@
                     <div class="search__filter-country search__filter-section">
                       <div class="search__filter-option">
                         <div class="search__filter-headering">
-                          <span class="search__filter-label">Страна</span>
+                          <span class="search__filter-label"  >Страна</span>
                         </div>
-                        <div class="search__filter--selected search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.countrys.UKR}"  @click="filters.countrys.UKR= !filters.countrys.UKR">
                           <span class="search__filter-text">Украина</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.countrys.RUS}"  @click="filters.countrys.RUS= !filters.countrys.RUS">
                           <span class="search__filter-text">Россия</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.countrys.BEL}"  @click="filters.countrys.BEL= !filters.countrys.BEL">
                           <span class="search__filter-text">Беларусь</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.countrys.POL}"  @click="filters.countrys.POL= !filters.countrys.POL">
                           <span class="search__filter-text">Польша</span>
                         </div>
                         <div class="search__filter-item search__filter-item--all">
-                          <span class="search__filter-text">Все</span>
+                          <span class="search__filter-text" @click="buttonFiltersAll(filters.countrys)">Все</span>
                         </div>
                       </div>
                     </div>
@@ -877,28 +901,28 @@
                         <div class="search__filter-headering">
                           <span class="search__filter-label">Рост</span>
                         </div>
-                        <div class="search__filter--selected search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.height._1}"  @click="filters.height._1 = !filters.height._1">
                           <span class="search__filter-text">Менее 150 см</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.height._2}"  @click="filters.height._2 = !filters.height._2">
                           <span class="search__filter-text">150-160 см</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.height._3}"  @click="filters.height._3 = !filters.height._3">
                           <span class="search__filter-text">161-170 см</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.height._4}"  @click="filters.height._4= !filters.height._4">
                           <span class="search__filter-text">171-180 см</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.height._5}"  @click="filters.height._5 = !filters.height._5">
                           <span class="search__filter-text">181-190 см</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.height._6}"  @click="filters.height._6 = !filters.height._6">
                           <span class="search__filter-text">191-200 см</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.height._7}"  @click="filters.height._7 = !filters.height._7">
                           <span class="search__filter-text">Более 200 см</span>
                         </div>
-                        <div class="search__filter-item search__filter-item--all">
+                        <div class="search__filter-item search__filter-item--all" @click="buttonFiltersAll(filters.height)">
                           <span class="search__filter-text">Все</span>
                         </div>
                       </div>
@@ -912,46 +936,46 @@
                         <div class="search__filter-headering">
                           <span class="search__filter-label">Возраст</span>
                         </div>
-                        <div class="search__filter--selected search__filter-item">
-                          <span class="search__filter-text">Менее 18</span>
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.age._1}"  @click="filters.age._1 = !filters.age._1">
+                          <span class="search__filter-text" >Менее 18</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.age._2}"  @click="filters.age._2 = !filters.age._2">
                           <span class="search__filter-text">18-23</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.age._3}"  @click="filters.age._3 = !filters.age._3">
                           <span class="search__filter-text">24-28</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.age._4}"  @click="filters.age._4 = !filters.age._4">
                           <span class="search__filter-text">29-33</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.age._5}"  @click="filters.age._5 = !filters.age._5">
                           <span class="search__filter-text">34-38</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.age._6}"  @click="filters.age._6 = !filters.age._6">
                           <span class="search__filter-text">39-43</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.age._7}"  @click="filters.age._7 = !filters.age._7">
                           <span class="search__filter-text">44-48</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.age._8}"  @click="filters.age._8 = !filters.age._8">
                           <span class="search__filter-text">49-53</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.age._9}"  @click="filters.age._9 = !filters.age._9">
                           <span class="search__filter-text">54-58</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.age._10}"  @click="filters.age._10 = !filters.age._10">
                           <span class="search__filter-text">59-63</span>
                         </div>
-                        <div class="search__filter-item">
+                        <div class="search__filter-item" :class="{'search__filter--selected ':filters.age._11}"  @click="filters.age._11 = !filters.age._11">
                           <span class="search__filter-text">59-63</span>
                         </div>
-                        <div class="search__filter-item search__filter-item--all">
+                        <div class="search__filter-item search__filter-item--all"  @click="buttonFiltersAll(filters.age)">
                           <span class="search__filter-text">Все</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>//ВЫТЯНУТЬ ШАБЛОН МОЖНО ТУТ!
+                </div>
                 <div class="result">
                   <div class="result__item">
                     <div class="result__wrapper">
@@ -1277,6 +1301,16 @@
                       </div>
                     </div>
                   </div>
+                  <userCard 
+                  description='123'
+                  age='age'
+                  prof='prof'
+                  country='country'
+                  firstName='firstName'
+                  lastName='lastName'
+                  nickname='nickname' />
+                  
+
                 </div>
               </div>
               <div class="main__sidebar">
@@ -1290,7 +1324,6 @@
                       <button id="sidebarProfileBtn" @click="showprofile=true">Настроить профиль</button>
                     </div>
                   </div>
-
                   <!-- ad -->
                   <div class="sidebar__ad"></div>
                 </div>
@@ -1361,9 +1394,10 @@
 <script>
 import axios from "axios";
 import loading from "./loading";
+import userCard from "./userCard";
 export default {
   name: "newMain",
-  components: { loading },
+  components: { loading, userCard},
   data() {
     return {
       popupflag: false,
@@ -1417,7 +1451,46 @@ export default {
       popupTitle: "popupTitle",
       popupContext: "popupContext",
       showprofile:false,
+      showfiltersFrom:false,
       //SEND TO THER SERVER
+      filters:{
+        types:{
+          dj:false,
+          pj:false,
+          dancer:false,
+          model:false,  
+        },
+        countrys:{
+          UKR: false,
+          RUS: false,
+          BEL: false,
+          POL: false,
+        },
+        height:{
+          _1: false,
+          _2: false,
+          _3: false,
+          _4: false,
+          _5: false,
+          _6: false,
+          _7: false,
+        },
+        age:{
+          
+          _1: false,
+          _2: false,
+          _3: false,
+          _4: false,
+          _5: false,
+          _6: false,
+          _7: false,
+          _8: false,
+          _9: false,
+          _10: false,
+          _11: false,
+        }
+      },
+      
     };
   },
   computed: {
@@ -1555,6 +1628,7 @@ export default {
           this.height = res.data.user.heigh || 0;
 
           this.email = res.data.user.email ;
+          this.nickname = res.data.user.nickname ;
           this.startDisabled = res.data.user.startDisabled ;
           console.log("all is load");
         },
@@ -1641,6 +1715,10 @@ export default {
 
       // result = prompt(title, [default]);
     },
+    toggleFilters(){
+      console.log('toggleFilters');
+      this.showfiltersFrom=!this.showfiltersFrom;
+    },
     saveInfo() {
       const newUserValues = {
         firstName: this.firstName,
@@ -1678,7 +1756,6 @@ export default {
       console.log(newUserValues);
     },
     find() {
-      // console.log('filters');
 
       let filters = {
         type: this.type,
@@ -1701,6 +1778,20 @@ export default {
           }
         );
     },
+    buttonFiltersAll(obj){
+      for (var key in obj){
+        obj[key]=true;
+      }
+    },
+    buttonClear(){
+      let obj = this.filters;
+      for (var key in obj){
+        for (var key2 in obj[key]){
+          obj[key][key2]=false;
+        }
+      }
+    },
+    
   },
 };
 </script>

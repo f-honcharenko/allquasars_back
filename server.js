@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 const User = require('./models/user');
 const jwt = require('jsonwebtoken');
 const user = require('./models/user');
+// const e = require('express');
 
 mongoose.connect(config.mongoose.link, {
     useNewUrlParser: true,
@@ -22,7 +23,7 @@ app.use(bodyPaster.urlencoded({ extended: false }));
 //routes
 app.post('/signup', (req, res, next) => {
     console.log(req.body);
-    const newUser = new User({
+    let newUser = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         birthday: req.body.date,
@@ -31,31 +32,50 @@ app.post('/signup', (req, res, next) => {
         password: bcrypt.hashSync(req.body.password, config.bcrypt.salt),
         startDisabled:true,
     });
-
+// Math.random().toString(36).substring(2);
     user.findOne(
         { email: newUser.email },
         { _id: 1 },
-        (err, user) => {
-            if (user) {
+        async (err, userRes) => {
+            if (userRes) {
                 //User with this email was found
                 return res.status(409).json({
                     title: 'Error',
                     message: 'email already used',
                 })
             } else {
-                newUser.save(err => {
-                    if (err) {
-                        return res.status(400).json({
-                            title: 'error',
-                            message: err
-                        });
-                    } else {
-                        return res.status(200).json({
-                            title: 'singup success',
-                            message: ''
-                        });
-                    }
-                });
+                let nicknameCreated = false;
+                let nickname ;
+                while (!nicknameCreated) { 
+                    nickname = Math.random().toString(36).substring(2);
+                    console.log(nickname);
+                    nicknameCreated = true;
+                    await user.findOne(
+                        { nickname:nickname },
+                        { _id: 1 },
+                        (err, res2) => {
+                            if (!res2) {
+                                nicknameCreated = true;
+                                newUser.nickname = nickname;
+                                newUser.save(err => {
+                                    if (err) {
+                                        return res.status(400).json({
+                                            title: 'error',
+                                            message: err
+                                        });
+                                    } else {
+                                        return res.status(200).json({
+                                            title: 'singup success',
+                                            message: ''
+                                        });
+                                    }
+                                });
+                            }
+                         });
+
+                }
+                
+                
             }
         });
 

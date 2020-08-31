@@ -503,7 +503,7 @@ html {
     height: auto;
     background-color: white;
     border-radius: 5px;
-    padding: 2.75rem;
+    padding: 2.75rem 2.75rem 0 2.75rem;
     box-shadow: var(--shadow-block);
 }
 
@@ -527,6 +527,11 @@ html {
 .profile__section-name--filter {
     padding-bottom: 2.75rem;
     border-bottom: var(--border-setting-section);
+}
+
+.profile__section-name--danger{
+    border-top: var(--border-setting-section);
+    padding-top: 2rem;
 }
 
 .profile__section-content {
@@ -686,13 +691,39 @@ html {
     outline: none;
 }
 
-.portfolio__form {
+.portfolio__form,
+.portfolio__error {
     width: 100%;
     height: auto;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 
-.portfolio__form--grided {
+.portfolio__error{
+    font-size: 1.4rem;
+    font-family: var(--font-eUkrLGH);
+    color: #e52d27;
+    margin-top: 0rem;
+}
+
+.portfolio__error-item{
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.portfolio__error-item--disabled{
+    display: none;
+}
+
+.portfolio__error-item:first-of-type{
+    grid-column: 1/2;
+}
+
+.portfolio__error-item:last-of-type{
+    grid-column: 2/-1;
+}
+
+.portfolio__form--grided,
+.portfolio__error--grided {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 1fr;
@@ -1146,6 +1177,16 @@ html {
     border-radius: 5px;
 }
 
+.profile__submit--sticky{
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: 0;
+    background-color: white;
+    z-index: 10;
+    padding: 2rem 0 2.75rem 0;
+    border-top: var(--border-setting-section);
+}
+
 .profile__submit {
     margin: 0;
 }
@@ -1156,6 +1197,10 @@ html {
     color: #8b8b8b;
     font-size: 1.6rem;
     font-family: var(--font-eUkrLGH);
+}
+
+.profile__submit-last{
+    font-style: italic;
 }
 
 .portfolio__danger-action,
@@ -1548,6 +1593,11 @@ html {
     display: flex;
     align-items: center;
     line-height: 0.5;
+}
+
+.result__info-filter--customer{
+    color: rgb(218, 165, 32);
+    background-color: rgba(218, 165, 32, 0.1);
 }
 
 .result__content:hover .result__info{

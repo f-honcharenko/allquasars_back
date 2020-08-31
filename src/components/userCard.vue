@@ -1,18 +1,48 @@
 <template>
 <div>
-    <h1>userCard</h1>
-    <div>
-        name:{{user.name}}<br/>
-        Type:{{user.type}}<br/>
-        email:{{user.email}}<br/>
-        createdAt:{{user.createdAt}}<br/> 
-        updatedAt:{{user.updatedAt}} <br/>
-    </div>
+                  <div class="result__item">
+                    <div class="result__wrapper">
+                      <div class="result__content">
+                        <div class="result__picture">
+                          <!-- аватар чела -->
+                          <img src="images/main/test5.jpg" alt="avatar" />
+                        </div>
+                        <div class="result__info">
+                          <div class="result__nickname">
+                            <!-- никнейм или же логин чела -->
+                            <span class="result__info-nickname">{{nickname}}</span>
+                          </div>
+                          <div class="result__info-short">
+                            <div class="result__name">
+                              <!-- имя чувака -->
+                              <span class="result__info-name">{{firstName}} {{lastName}}</span>
+
+                              <!-- возраст и страна -->
+                              <span class="result__info-agecountry">{{age}}, {{country}}</span>
+                            </div>
+                            <div class="result__filter">
+                              <!-- главный вид деятельности -->
+                              <span class="result__info-filter">
+                                <span>{{prof}}</span>
+                              </span>
+                            </div>
+                          </div>
+
+                          <!-- текст о себе -->
+                          <div class="result__info-more">
+                              {{description}}
+                          </div>
+                          <div class="result__btn">
+                            <button>Подробнее</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 </div>
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
     name:'userCard',
@@ -21,20 +51,8 @@ export default {
             user :{}
         }
     },
+    props:['description', 'age', 'country','firstName','lastName','nickname','prof'],
     beforeMount(){
-        let ide = this.$route.params.id;//ИД пользователя, инфу которого нужно получить
-        // let inputs = {name:1,type:1,email:1,_id:1};
-        let inputs = {};//Поля которые нужно получить. {} => all info
-
-        axios.get('http://192.168.1.9:5000/userDescription',{  headers: {token:localStorage['token'],  id:ide, inputs}  })
-            .then(res=>{
-                if (res.status==200){
-                        // console.log(res.data.user);
-                        this.user=res.data.user;
-                    }
-            },err=>{
-                console.log(err);
-            });
 
     },
     
