@@ -22,7 +22,7 @@
                             </div>
                             <div class="result__filter">
                               <!-- главный вид деятельности -->
-                              <span class="result__info-filter">
+                              <span class="result__info-filter" :class="{'result__info-filter--customer':convertTypeToBool}">
                                 <span>{{prof}}</span>
                               </span>
                             </div>
@@ -51,11 +51,19 @@ export default {
             user :{}
         }
     },
-    props:['description', 'age', 'country','firstName','lastName','nickname','prof'],
+    props:['description', 'age', 'country','firstName','lastName','nickname','prof','type'],
     beforeMount(){
 
     },
-    
+    computed:{
+      convertTypeToBool: function () {
+      if (this.type=='manager') {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    },
     methods:{
 
     }

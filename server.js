@@ -30,9 +30,9 @@ app.post('/signup', (req, res, next) => {
         email: req.body.email,
         type: req.body.type,
         password: bcrypt.hashSync(req.body.password, config.bcrypt.salt),
-        startDisabled:true,
+        startDisabled: true,
     });
-// Math.random().toString(36).substring(2);
+    // Math.random().toString(36).substring(2);
     user.findOne(
         { email: newUser.email },
         { _id: 1 },
@@ -45,13 +45,13 @@ app.post('/signup', (req, res, next) => {
                 })
             } else {
                 let nicknameCreated = false;
-                let nickname ;
-                while (!nicknameCreated) { 
+                let nickname;
+                while (!nicknameCreated) {
                     nickname = Math.random().toString(36).substring(2);
                     console.log(nickname);
                     nicknameCreated = true;
                     await user.findOne(
-                        { nickname:nickname },
+                        { nickname: nickname },
                         { _id: 1 },
                         (err, res2) => {
                             if (!res2) {
@@ -71,11 +71,11 @@ app.post('/signup', (req, res, next) => {
                                     }
                                 });
                             }
-                         });
+                        });
 
                 }
-                
-                
+
+
             }
         });
 
@@ -249,47 +249,52 @@ app.delete('/user', (req, res, next) => {
 //     });
 // });
 
-// //grab use4rs
-// app.post('/getUsers', (req, res, next)=>{
-//     let token = req.body.token;
-//     let filters = req.body.filters;
-//     console.log(filters);
-//     console.log(req.body);
-//     jwt.verify(token, config.jwt.secret, (err,decoded)=>{
-//         if (err) return res.status(401).json({
-//             title:'unauthorized',
-//             message:'invalid token',
-//             err
-//         });
-//         //token is valid
-//         User.find(
-//             filters,
-//             {name:1,type:1},
-//             (err, result)=>{
-//                 if (err){
-//                     res.status(500).json({
-//                         title:'ERROR!',
-//                         message:'smth wrong',
-//                         err
-//                     })
-//                     return console.log(err);
-//                 } else{
-//                     if (result.length == 0) {
-//                         //по заданный критерия пользователь не найден
-//                         console.log('0');
-//                         console.log(result);
-//                     }
-//                     return res.status(200).json({
-//                         title:'OK',
-//                         message:'all is good',
-//                         result
-//                     }) 
-//                 }
-//         }).sort({name: 1});//Сортировка по имени
+//grab use4rs
+app.post('/getUsers', (req, res, next) => {
+    let token = req.body.token;
+    let filters = req.body.newFilters;
+    console.log('1', filters.types);
+    console.log(req.body);
+    jwt.verify(token, config.jwt.secret, (err, decoded) => {
+        if (err) return res.status(401).json({
+            title: 'unauthorized',
+            message: 'invalid token',
+            err
+        });
+        //token is valid
+        User.find(
+            filters,
+            // { name: 1, type: 1 },
+            (err, result) => {
+                console.log('RES', result);
+                console.log('err', err);
+                if (err) {
+                    res.status(500).json({
+                        title: 'ERROR!',
+                        message: 'smth wrong',
+                        err
+                    })
+                    return console.log(err);
+                } else {
+                    console.log();
+                    if (result.length == 0) {
+                        return res.status(404).json({
+                            title: 'OK',
+                            message: 'not found',
+                            result
+                        })
+                    } else {
+                        return res.status(200).json({
+                            title: 'OK',
+                            message: 'all is good',
+                            result
+                        })
+                    }
+                }
+            }).sort({ name: 1 });//Сортировка по имени
 
-//     });
-// });
-
+    });
+});
 
 
 const port = process.env.PORT || config.express.port;

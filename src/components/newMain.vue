@@ -764,13 +764,23 @@
                     <button class="profile__submit-btn" @click="saveInfo()">Сохранить</button>
                   </span> -->
                 <!-- сохранение изменений -->
+                                        <!-- закрыть редактирования -->
+                        <div class="profile__section-name">
+                            <spa class="profile__section-content">Отменить действия</spa>
+                        </div>
+                        <div class="portfolio__cancel">
+                            <span class="portfolio__cancel-message">Завершить редактирование профиля без изменений.</span>
+                            <span class="portfolio__cancel-action">
+                                <button class="portfolio__cancel-btn">Закрыть</button>
+                            </span>
+                        </div>
 
                         <div class="profile__submit--sticky">
                             <div class="profile__section-name">
                                 <span class="profile__section-content">Подтверждение изменений</span>
                             </div>
                             <div class="profile__submit">
-                                <span class="profile__submit-message">Все внесенные/измененные данные будут сохранены. Последнее сохранение <span class="profile__submit-last">31.08.20</span></span>
+                                <span class="profile__submit-message">Все внесенные/измененные данные будут сохранены. Последнее сохранение <span class="profile__submit-last">{{lastupdate}}</span></span>
                                 <span class="profile__submit-action">
                                     <button class="profile__submit-btn"  @click="saveInfo()" >Сохранить</button>
                                 </span>
@@ -813,11 +823,11 @@
                           />
                         </svg>
                       </span>
-                      <span class="search__text" @click="buttonClear">Очистить</span>
+                      <span class="search__text" @click="find( )">Очистить</span>
                     </button>
 
                     <!-- когда фильтр включен дать кнопке стиль search__btn--active -->
-                    <button id="filterBtn" class="search__btn">
+                    <button id="filterBtn" class="search__btn " :class="{'search__btn--active':showfiltersFrom}"  @click="toggleFilters()">
                       <span class="search__icon">
                         <svg
                           width="24"
@@ -840,7 +850,7 @@
                           />
                         </svg>
                       </span>
-                      <span class="search__text" @click="toggleFilters()">Фильтры</span>
+                      <span class="search__text">Фильтры</span>
                     </button>
                   </div>
 
@@ -976,340 +986,19 @@
                     </div>
                   </div>
                 </div>
-                <div class="result">
-                  <div class="result__item">
-                    <div class="result__wrapper">
-                      <div class="result__content">
-                        <div class="result__picture">
-                          <!-- аватар чела -->
-                          <img src="images/main/test2.jpg" alt="avatar" />
-                        </div>
-                        <div class="result__info">
-                          <div class="result__nickname">
-                            <!-- никнейм или же логин чела -->
-                            <span class="result__info-nickname">@hollandwarddj</span>
-                          </div>
-                          <div class="result__info-short">
-                            <div class="result__name">
-                              <!-- имя чувака -->
-                              <span class="result__info-name">Holland Ward</span>
-
-                              <!-- возраст и страна -->
-                              <span class="result__info-agecountry">24, USA</span>
-                            </div>
-                            <div class="result__filter">
-                              <!-- главный вид деятельности -->
-                              <span class="result__info-filter">
-                                <span>Танцор</span>
-                              </span>
-                            </div>
-                          </div>
-
-                          <!-- текст о себе -->
-                          <div class="result__info-more">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Animi rerum quos ab debitis aliquid. Quas ex
-                            rerum debitis. Placeat accusantium aspernatur
-                            voluptate recusandae tenetur officia quo illum,
-                            pariatur ut necessitatibus! Consequuntur tempore
-                            veniam incidunt ratione quasi, sunt quis aliquam qui,
-                            repellat, asperiores molestiae earum? Totam at odio,
-                            labore veniam natus, officia vero facere, sint iusto
-                            quo quia nemo quae reiciendis. Vero debitis a magni
-                            porro ducimus, eaque recusandae et assumenda beatae.
-                            Cum, praesentium. Magni, earum quidem, quasi ea
-                            reiciendis itaque sunt corporis a amet doloribus
-                            corrupti fugit iste voluptatem officia. Aliquid itaque
-                            similique quod excepturi. Dignissimos consequatur
-                            animi veniam nisi mollitia non quae asperiores ratione
-                            maxime cum! Illo aut facere suscipit consequuntur,
-                            sunt repellat sint tempora expedita veniam? Accusamus,
-                            perspiciatis. Nesciunt eos assumenda suscipit minus
-                            illo maiores velit iste commodi officia? Ipsam eaque
-                            dicta mollitia porro ratione fuga eius, facilis
-                            laboriosam rerum obcaecati nemo. Culpa, error velit?
-                            Cum, reprehenderit placeat? Doloribus itaque veritatis
-                            commodi placeat fugiat facilis ut blanditiis! Modi
-                            praesentium cumque odio illum quia unde ducimus
-                            voluptas quaerat, odit officiis ea sapiente nulla
-                            minima suscipit at delectus magni inventore! Similique
-                            incidunt, accusamus dolores qui necessitatibus
-                            consequuntur odio fugit nisi quae ex ab, adipisci
-                            ipsum minus modi ad commodi, architecto minima nulla
-                            quos corrupti. Accusantium nemo mollitia hic illum
-                            excepturi. Nostrum voluptatibus fuga vitae eaque
-                            nesciunt iste beatae tempora eum natus! Deserunt
-                            numquam dolorem, voluptas rem maiores natus delectus
-                            alias! Ratione, hic quod! Pariatur, cupiditate ducimus
-                            sed ad ex deserunt. Vel amet assumenda dolorum debitis
-                            nemo nam adipisci consectetur voluptas! Sequi, quis
-                            quia ab debitis quos expedita sint aliquam quaerat
-                            veritatis minima fugiat mollitia commodi ea.
-                            Voluptatibus quis libero cumque! Deserunt, recusandae
-                            cupiditate cumque nobis dolores porro sit doloremque.
-                            Praesentium, sint molestiae. Nemo alias quasi officia
-                            distinctio tenetur dolore eligendi aut esse sint nisi
-                            in laborum perspiciatis, magni itaque rem.
-                          </div>
-                          <div class="result__btn">
-                            <button>Подробнее</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="result__item">
-                    <div class="result__wrapper">
-                      <div class="result__content">
-                        <div class="result__picture">
-                          <!-- аватар чела -->
-                          <img src="images/main/test3.jpg" alt="avatar" />
-                        </div>
-                        <div class="result__info">
-                          <div class="result__nickname">
-                            <!-- никнейм или же логин чела -->
-                            <span class="result__info-nickname">@annabelleanderson</span>
-                          </div>
-                          <div class="result__info-short">
-                            <div class="result__name">
-                              <!-- имя чувака -->
-                              <span class="result__info-name">Annabelle Anderson</span>
-
-                              <!-- возраст и страна -->
-                              <span class="result__info-agecountry">23, USA</span>
-                            </div>
-                            <div class="result__filter">
-                              <!-- главный вид деятельности -->
-                              <span class="result__info-filter">
-                                <span>Модель</span>
-                              </span>
-                            </div>
-                          </div>
-
-                          <!-- текст о себе -->
-                          <div class="result__info-more">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Animi rerum quos ab debitis aliquid. Quas ex
-                            rerum debitis. Placeat accusantium aspernatur
-                            voluptate recusandae tenetur officia quo illum,
-                            pariatur ut necessitatibus! Consequuntur tempore
-                            veniam incidunt ratione quasi, sunt quis aliquam qui,
-                            repellat, asperiores molestiae earum? Totam at odio,
-                            labore veniam natus, officia vero facere, sint iusto
-                            quo quia nemo quae reiciendis. Vero debitis a magni
-                            porro ducimus, eaque recusandae et assumenda beatae.
-                            Cum, praesentium. Magni, earum quidem, quasi ea
-                            reiciendis itaque sunt corporis a amet doloribus
-                            corrupti fugit iste voluptatem officia. Aliquid itaque
-                            similique quod excepturi. Dignissimos consequatur
-                            animi veniam nisi mollitia non quae asperiores ratione
-                            maxime cum! Illo aut facere suscipit consequuntur,
-                            sunt repellat sint tempora expedita veniam? Accusamus,
-                            perspiciatis. Nesciunt eos assumenda suscipit minus
-                            illo maiores velit iste commodi officia? Ipsam eaque
-                            dicta mollitia porro ratione fuga eius, facilis
-                            laboriosam rerum obcaecati nemo. Culpa, error velit?
-                            Cum, reprehenderit placeat? Doloribus itaque veritatis
-                            commodi placeat fugiat facilis ut blanditiis! Modi
-                            praesentium cumque odio illum quia unde ducimus
-                            voluptas quaerat, odit officiis ea sapiente nulla
-                            minima suscipit at delectus magni inventore! Similique
-                            incidunt, accusamus dolores qui necessitatibus
-                            consequuntur odio fugit nisi quae ex ab, adipisci
-                            ipsum minus modi ad commodi, architecto minima nulla
-                            quos corrupti. Accusantium nemo mollitia hic illum
-                            excepturi. Nostrum voluptatibus fuga vitae eaque
-                            nesciunt iste beatae tempora eum natus! Deserunt
-                            numquam dolorem, voluptas rem maiores natus delectus
-                            alias! Ratione, hic quod! Pariatur, cupiditate ducimus
-                            sed ad ex deserunt. Vel amet assumenda dolorum debitis
-                            nemo nam adipisci consectetur voluptas! Sequi, quis
-                            quia ab debitis quos expedita sint aliquam quaerat
-                            veritatis minima fugiat mollitia commodi ea.
-                            Voluptatibus quis libero cumque! Deserunt, recusandae
-                            cupiditate cumque nobis dolores porro sit doloremque.
-                            Praesentium, sint molestiae. Nemo alias quasi officia
-                            distinctio tenetur dolore eligendi aut esse sint nisi
-                            in laborum perspiciatis, magni itaque rem.
-                          </div>
-                          <div class="result__btn">
-                            <button>Подробнее</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="result__item">
-                    <div class="result__wrapper">
-                      <div class="result__content">
-                        <div class="result__picture">
-                          <!-- аватар чела -->
-                          <img src="images/main/test4.jpg" alt="avatar" />
-                        </div>
-                        <div class="result__info">
-                          <div class="result__nickname">
-                            <!-- никнейм или же логин чела -->
-                            <span class="result__info-nickname">@hollandwarddj</span>
-                          </div>
-                          <div class="result__info-short">
-                            <div class="result__name">
-                              <!-- имя чувака -->
-                              <span class="result__info-name">Щукин Фёдор</span>
-
-                              <!-- возраст и страна -->
-                              <span class="result__info-agecountry">19, Russia</span>
-                            </div>
-                            <div class="result__filter">
-                              <!-- главный вид деятельности -->
-                              <span class="result__info-filter">
-                                <span>Диджей</span>
-                              </span>
-                            </div>
-                          </div>
-
-                          <!-- текст о себе -->
-                          <div class="result__info-more">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Animi rerum quos ab debitis aliquid. Quas ex
-                            rerum debitis. Placeat accusantium aspernatur
-                            voluptate recusandae tenetur officia quo illum,
-                            pariatur ut necessitatibus! Consequuntur tempore
-                            veniam incidunt ratione quasi, sunt quis aliquam qui,
-                            repellat, asperiores molestiae earum? Totam at odio,
-                            labore veniam natus, officia vero facere, sint iusto
-                            quo quia nemo quae reiciendis. Vero debitis a magni
-                            porro ducimus, eaque recusandae et assumenda beatae.
-                            Cum, praesentium. Magni, earum quidem, quasi ea
-                            reiciendis itaque sunt corporis a amet doloribus
-                            corrupti fugit iste voluptatem officia. Aliquid itaque
-                            similique quod excepturi. Dignissimos consequatur
-                            animi veniam nisi mollitia non quae asperiores ratione
-                            maxime cum! Illo aut facere suscipit consequuntur,
-                            sunt repellat sint tempora expedita veniam? Accusamus,
-                            perspiciatis. Nesciunt eos assumenda suscipit minus
-                            illo maiores velit iste commodi officia? Ipsam eaque
-                            dicta mollitia porro ratione fuga eius, facilis
-                            laboriosam rerum obcaecati nemo. Culpa, error velit?
-                            Cum, reprehenderit placeat? Doloribus itaque veritatis
-                            commodi placeat fugiat facilis ut blanditiis! Modi
-                            praesentium cumque odio illum quia unde ducimus
-                            voluptas quaerat, odit officiis ea sapiente nulla
-                            minima suscipit at delectus magni inventore! Similique
-                            incidunt, accusamus dolores qui necessitatibus
-                            consequuntur odio fugit nisi quae ex ab, adipisci
-                            ipsum minus modi ad commodi, architecto minima nulla
-                            quos corrupti. Accusantium nemo mollitia hic illum
-                            excepturi. Nostrum voluptatibus fuga vitae eaque
-                            nesciunt iste beatae tempora eum natus! Deserunt
-                            numquam dolorem, voluptas rem maiores natus delectus
-                            alias! Ratione, hic quod! Pariatur, cupiditate ducimus
-                            sed ad ex deserunt. Vel amet assumenda dolorum debitis
-                            nemo nam adipisci consectetur voluptas! Sequi, quis
-                            quia ab debitis quos expedita sint aliquam quaerat
-                            veritatis minima fugiat mollitia commodi ea.
-                            Voluptatibus quis libero cumque! Deserunt, recusandae
-                            cupiditate cumque nobis dolores porro sit doloremque.
-                            Praesentium, sint molestiae. Nemo alias quasi officia
-                            distinctio tenetur dolore eligendi aut esse sint nisi
-                            in laborum perspiciatis, magni itaque rem.
-                          </div>
-                          <div class="result__btn">
-                            <button>Подробнее</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="result__item">
-                    <div class="result__wrapper">
-                      <div class="result__content">
-                        <div class="result__picture">
-                          <!-- аватар чела -->
-                          <img src="images/main/test5.jpg" alt="avatar" />
-                        </div>
-                        <div class="result__info">
-                          <div class="result__nickname">
-                            <!-- никнейм или же логин чела -->
-                            <span class="result__info-nickname">@hollandwarddj</span>
-                          </div>
-                          <div class="result__info-short">
-                            <div class="result__name">
-                              <!-- имя чувака -->
-                              <span class="result__info-name">Колесник Мария</span>
-
-                              <!-- возраст и страна -->
-                              <span class="result__info-agecountry">40, Ukraine</span>
-                            </div>
-                            <div class="result__filter">
-                              <!-- главный вид деятельности -->
-                              <span class="result__info-filter">
-                                <span>Диджей</span>
-                              </span>
-                            </div>
-                          </div>
-
-                          <!-- текст о себе -->
-                          <div class="result__info-more">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Animi rerum quos ab debitis aliquid. Quas ex
-                            rerum debitis. Placeat accusantium aspernatur
-                            voluptate recusandae tenetur officia quo illum,
-                            pariatur ut necessitatibus! Consequuntur tempore
-                            veniam incidunt ratione quasi, sunt quis aliquam qui,
-                            repellat, asperiores molestiae earum? Totam at odio,
-                            labore veniam natus, officia vero facere, sint iusto
-                            quo quia nemo quae reiciendis. Vero debitis a magni
-                            porro ducimus, eaque recusandae et assumenda beatae.
-                            Cum, praesentium. Magni, earum quidem, quasi ea
-                            reiciendis itaque sunt corporis a amet doloribus
-                            corrupti fugit iste voluptatem officia. Aliquid itaque
-                            similique quod excepturi. Dignissimos consequatur
-                            animi veniam nisi mollitia non quae asperiores ratione
-                            maxime cum! Illo aut facere suscipit consequuntur,
-                            sunt repellat sint tempora expedita veniam? Accusamus,
-                            perspiciatis. Nesciunt eos assumenda suscipit minus
-                            illo maiores velit iste commodi officia? Ipsam eaque
-                            dicta mollitia porro ratione fuga eius, facilis
-                            laboriosam rerum obcaecati nemo. Culpa, error velit?
-                            Cum, reprehenderit placeat? Doloribus itaque veritatis
-                            commodi placeat fugiat facilis ut blanditiis! Modi
-                            praesentium cumque odio illum quia unde ducimus
-                            voluptas quaerat, odit officiis ea sapiente nulla
-                            minima suscipit at delectus magni inventore! Similique
-                            incidunt, accusamus dolores qui necessitatibus
-                            consequuntur odio fugit nisi quae ex ab, adipisci
-                            ipsum minus modi ad commodi, architecto minima nulla
-                            quos corrupti. Accusantium nemo mollitia hic illum
-                            excepturi. Nostrum voluptatibus fuga vitae eaque
-                            nesciunt iste beatae tempora eum natus! Deserunt
-                            numquam dolorem, voluptas rem maiores natus delectus
-                            alias! Ratione, hic quod! Pariatur, cupiditate ducimus
-                            sed ad ex deserunt. Vel amet assumenda dolorum debitis
-                            nemo nam adipisci consectetur voluptas! Sequi, quis
-                            quia ab debitis quos expedita sint aliquam quaerat
-                            veritatis minima fugiat mollitia commodi ea.
-                            Voluptatibus quis libero cumque! Deserunt, recusandae
-                            cupiditate cumque nobis dolores porro sit doloremque.
-                            Praesentium, sint molestiae. Nemo alias quasi officia
-                            distinctio tenetur dolore eligendi aut esse sint nisi
-                            in laborum perspiciatis, magni itaque rem.
-                          </div>
-                          <div class="result__btn">
-                            <button>Подробнее</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <userCard 
-                  description='123'
-                  age='age'
-                  prof='prof'
-                  country='country'
-                  firstName='firstName'
-                  lastName='lastName'
-                  nickname='nickname' />
-                  
+                  <center v-if="resultsLoading"><loading /></center>
+                
+                <div class="result" v-else>
+                  <userCard
+                  v-for="item in searchResult" :key="item._id"
+                  :description='item.description'
+                  :age='Math.trunc((new Date().getTime() - new Date(item.birthday.slice(0,10))) / (24 * 3600 * 365.25 * 1000))'
+                  :prof='item.type'
+                  :type='item.type'
+                  :country='___'
+                  :firstName='item.firstName'
+                  :lastName='item.lastName'
+                  :nickname='item.nickname' />
 
                 </div>
               </div>
@@ -1416,6 +1105,7 @@ export default {
       password: "_PASSWORD_", //NOT SENDED
       nickname: "_NICKNAME_", //NOT SENDED
       passwordcheck: "_PASSWORDCHECK_", //NOT SENDED
+      resultsLoading:false,
       countrys: {
         UKR: false,
         RUS: false,
@@ -1452,6 +1142,7 @@ export default {
       popupContext: "popupContext",
       showprofile:false,
       showfiltersFrom:false,
+        searchResult:[],
       //SEND TO THER SERVER
       filters:{
         types:{
@@ -1490,6 +1181,7 @@ export default {
           _11: false,
         }
       },
+      lastupdate:null,
       
     };
   },
@@ -1628,6 +1320,7 @@ export default {
           this.height = res.data.user.heigh || 0;
 
           this.email = res.data.user.email ;
+          this.lastupdate = res.data.user.updatedAt.slice(0,10) ;
           this.nickname = res.data.user.nickname ;
           this.startDisabled = res.data.user.startDisabled ;
           console.log("all is load");
@@ -1716,7 +1409,6 @@ export default {
       // result = prompt(title, [default]);
     },
     toggleFilters(){
-      console.log('toggleFilters');
       this.showfiltersFrom=!this.showfiltersFrom;
     },
     saveInfo() {
@@ -1756,27 +1448,25 @@ export default {
       console.log(newUserValues);
     },
     find() {
-
-      let filters = {
-        type: this.type,
-      };
-
-      axios
-        .post("http://" + document.domain + ":5000/getUsers", {
-          token: localStorage["token"],
-          filters,
-        })
-        .then(
-          (res) => {
-            if (res.status == 200) {
-              this.searchResult = res.data.result;
+            let filters = this.filters;
+            var newFilters = {};
+            // console.log('filters');
+            for (let key in filters){
+                for (let key2 in filters[key]){
+                  if (filters[key][key2]) {newFilters[key+'.'+key2]=filters[key][key2]}
+                }
             }
-            console.log(res);
-          },
-          (err) => {
-            console.log(err.response);
-          }
-        );
+            console.log('newFilters',newFilters);
+            axios.post('http://'+document.domain+':5000/getUsers', { token:localStorage['token'], newFilters})
+                .then(res=>{
+                        this.searchResult = res.data.result;
+                    if (res.status==200){
+                        this.searchResult = res.data.result;
+                    }
+                    console.log(res.data.result);
+                }, err=>{
+                    console.log(err.response);
+                })
     },
     buttonFiltersAll(obj){
       for (var key in obj){

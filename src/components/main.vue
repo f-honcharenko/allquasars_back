@@ -113,7 +113,7 @@ export default {
                     if (res.status==200){
                         this.searchResult = res.data.result;
                     }
-                    console.log(res);
+                    console.log(res.data.result);
                 }, err=>{
                     console.log(err.response);
                 })
